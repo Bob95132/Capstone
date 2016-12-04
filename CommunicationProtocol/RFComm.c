@@ -1,59 +1,80 @@
 #include "RFStream.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <errno.h>
 #include <sys/time.h>
 #include <sys/types.h>
 #include <unistd.h>
 
 int main(int argc, char **argv) {
-   fd_set rfds, wfds;
-   struct timeval tv;
-   int retval;
-   char buf[100];
+   int port;
+   char cmd[3], sPort[50], data[1000];
+   int size;
+   char *indexOfNL;
+   int pval = 0;
+   int com = -1;
+   int quit = 0;
 
-   if (argc > 1) {
-      if (!strcmp(argv[1], "-s")) {
-         if (argc == 4) {
-            switch (atol(argv[3])) {
+   do {
+      fscanf(stdin, "%2s ", cmd);
+   
+      if (!strcmp(cmd, "-s")) { // set up port
+         if (fscanf(stdin, "%49s %d", sPort, &port) == 2) {
+            switch (port) {
                case 0:
-               fprint(stdout, "Port Number: %d", SetUpSerial(argv[2]);
+               if ((port = SetUpSerial(sPort)) == -1)
+                  pval = 1;
                break;
       
                case 1:
-               fprint(stdout, "Port Number: %d", SetUpTCP(argv[2]);
+               if ((port = SetUpTCP(sPort)) == -1) 
+                  pval = 1;  
+               break;
+
+               default:
+               fprintf(stderr, "Communication Type Not Supported: %d\n", com);
+               pval = 1;
                break;
             }
          }
-         else
-            fprintf(stderr, "RFCom -s Parameters: <Port Name> <Communication Type>");
-      }
-
-      if (!strcmp(argv[1], "-c")) {
-         if (argc == 4) {
-            memset(&tv, 0, sizeof(tv));
-            FD_ZERO(&rfds);
-            FD_ZERO(&rfds);
-            FD_SET(atol(argv[2]), &rfds);
-            FD_SET(atol(argv[2]), &wfds);
-            tv.tv_usec = 1000;
-         
-            if (select(atol(argv[2]), NULL, &wfds, NULL, &tv) > 0)
-               SendData(argv[3], strlen(argv[3]), atol(argv[2]));
-            while (select(atol(argv[2]), &rfds, NULL, NULL, &tv) > 0) {
-               ReceiveData(buf, sizeof(buf) - 1, atol(argv[2]));
-               fprintf(stdout, "%s\n", buf);
-               FD_SET(atol(argv[2]), &rfds);
-            }
+         else {
+            fprintf(stderr, "RFCom -s Parameters: <Port Name> <Communication Type>\n");
+            pval = 1;
          }
       }
 
-      if (!strcmp(argv[1], "-d")) {
-         if (argc == 3)
-            close(atol(argv[2]));
-         else 
-            fprintf(stderr, "RFCom -d Parameters: <Port Number>");
+      else if (!strcmp(cmd, "-c")) { //send/receive data from port
+         if (fgets(data, 99, stdin) != NULL) {
+            indexOfNL = strchr(data, '\n');
+            *indexOfNL = '\r';
+            //write to port when select reports ready
+           // if (select(port, NULL, &wfds, NULL, NULL) > 0 && pval == 0)
+            pval = ((size = SendData(data, strlen(data), port)) == -1) ? 1 : 0; // write to port
+            printf("Write Size: %d\n", size);
+            //read from port when select is ready and until the buffer is empty
+            if (!pval) {
+               pval = ((size = ReceiveData(data, sizeof(data) - 1, port)) == -1) ? 1 : 0;// read from port
+               fprintf(stdout, "Size: %d %s", size, data);   
+            }
+         }
+         else  {
+            fprintf(stderr, "RFCom -c Parameters: <Port Name> <data>\n");
+            pval = 1;
+         }
       }
-   }
 
-   return 0;
+      else if (!strcmp(cmd, "-d")) // close port communication
+         pval = (close(port) == -1) ? 1 : 0; //close port
+
+      else if (!strcmp(cmd, "-q"))
+         quit = 1;
+      
+      else {
+         pval = 1;
+         fprintf(stderr, "Command Not Recognized. List of availabe commands: -s, -c, -d, -q\n");
+      } 
+   } while (!quit && !pval);
+
+   return pval;
 }

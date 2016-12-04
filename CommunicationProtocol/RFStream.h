@@ -6,5 +6,5 @@
 int SetUpSerial(char *name);
 int SetUpTCP(char *name);
 int SendData(char *data, int size, int port);
-char *ReceiveData(char *buf, int size, int port);
+int ReceiveData(char *buf, int size, int port);
 
