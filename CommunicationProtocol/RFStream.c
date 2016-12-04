@@ -55,8 +55,8 @@ int SetUpSerial(char *name) {
       settings.c_iflag = ICRNL; // set carriage returns to new lines on ipnut
       settings.c_oflag = 0; // clear output config
 
-      settings.c_cc[VMIN] = 0; // set minimum character 
-      settings.c_cc[VTIME] = 150;  // set time between characters
+      settings.c_cc[VMIN] = 100; // set minimum character 
+      settings.c_cc[VTIME] = 1;  // set time between characters
 
       if (tcsetattr(comPort, TCSANOW, &settings) != 0) { //set attributes now
          fprintf(stderr, "Set Attribute Error: %s\n", strerror(errno));
