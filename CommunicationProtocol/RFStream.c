@@ -31,7 +31,7 @@ int SetUpSerial(char *name) {
    int comPort = open(name, O_RDWR | O_NOCTTY | O_SYNC);
 
    if (comPort == -1)
-      fprintf(stderr, "Error opening %s: %s\n", name, strerror(errno));
+      fprintf(stdout, "ERROR: opening %s: %s\n", name, strerror(errno));
 
    else { 
       tcgetattr(comPort, &settings); // get current attributes
@@ -59,7 +59,7 @@ int SetUpSerial(char *name) {
       settings.c_cc[VTIME] = 1;  // set time between characters
 
       if (tcsetattr(comPort, TCSANOW, &settings) != 0) { //set attributes now
-         fprintf(stderr, "Set Attribute Error: %s\n", strerror(errno));
+         fprintf(stdout, "ERROR: Set Attribute: %s\n", strerror(errno));
          comPort = -1;
       }
    }
@@ -85,7 +85,7 @@ int SetUpTCP(char *name) {
    dest.sin_port = htons(PORTNUM); // set destination port
 
    if (connect(comPort, (struct sockaddr *)&dest, sizeof(struct sockaddr_in)) != 0) { // open socket
-      fprintf(stderr, "Error connecting to ip address: %s\n", strerror(errno));
+      fprintf(stdout, "ERROR: connecting to ip address: %s\n", strerror(errno));
       comPort = -1;
    }
 
@@ -103,7 +103,7 @@ output: len(int): number of bytes sent, or -1 for failed write
 int SendData(char *data, int size, int port) {
    int len = write(port, data, size);
    if (len == -1)
-      fprintf(stderr, "Error from write: %s\n", strerror(errno));
+      fprintf(stdout, "ERROR: from write: %s\n", strerror(errno));
 
    return len;
 }
@@ -122,7 +122,7 @@ int ReceiveData(char *buf, int size, int port) {
    if (len > -1)
       buf[len] = 0;
    else {
-      fprintf(stderr, "Error from read: %s\n", strerror(errno));
+      fprintf(stdout, "ERROR: from read: %s\n", strerror(errno));
       buf[0] = 0;
    }
    
