@@ -5,8 +5,8 @@ import logging
 import sys
 import os
 
-CONFIG_FILENAME = 'rfid.conf'
-LOG_FILE = 'rfid.log'
+CONFIG_FILENAME = 'RFManager/rfid.conf'
+LOG_FILE = 'RFManager/rfid.log'
 EXIT_SUCCESS = 0
 
 # Gets the value for a given key 'keyname' from the properties file 'filepath'

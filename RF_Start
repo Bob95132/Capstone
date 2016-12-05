@@ -1,0 +1,7 @@
+#!/bin/bash
+
+python ./RFManager/RFManager.py &
+PID1=$!
+
+wait $PID1
+echo 'PID1 has ended.'

@@ -38,6 +38,7 @@ def main():
                 logging.info('Writing Tags to File...')
                 tstore.file_dump_json()
                 tstore.file_dump_xls()
+                fwrite_counter = 0
 
     except KeyboardInterrupt:
         logging.info('Exiting polling loop...')
