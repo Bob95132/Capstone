@@ -73,8 +73,9 @@ class ReaderCom(object):
             logging.info('RFCom response: %s' % output[1].strip('\n'))
             # parse reader data for list of tags
             tags = filter(None, re.split('[ \n\r]', re.sub('RECEIVED_DATA:', '', output[1])))
+            ids = map(lambda x: re.split('[,]', x)[1], tags)
             # add these tags to TagStore object
-            tstore.add_tags(tags)
+            tstore.add_tags(ids)
         else:
             logging.error('RFCom Polling ERROR')
             logging.error('RFCom response: %s' % output[1].strip('\n'))
