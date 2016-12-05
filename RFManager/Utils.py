@@ -3,6 +3,7 @@
 import ConfigParser
 import logging
 import sys
+import os
 
 CONFIG_FILENAME = 'rfid.conf'
 LOG_FILE = 'rfid.log'
@@ -35,6 +36,15 @@ def setup_logger(logfile, verbose):
         console.setLevel(logging.INFO)
     logging.getLogger('').addHandler(console)
 
+#checks for required files and fails out if not found
+def check_files():
+    if not os.path.exists(CONFIG_FILENAME):
+        report_failed_and_exit('config file %s not found.' % CONFIG_FILENAME)
+
+    scan_data_dir = get_property("RFSCAN_PATH", "CONFIGS")
+    if not os.path.exists(scan_data_dir):
+        os.makedirs(scan_data_dir)
+
 # Reports setup failure and exits the program with error status
 def report_failed_and_exit(message=None):
     if message:
@@ -45,6 +55,8 @@ def report_failed_and_exit(message=None):
 
 
 def log_title(title):
+    LINE_WIDTH = int(get_property("LINE_WIDTH", 'CONFIGS'))
+
     border_len = (LINE_WIDTH - len(title) - 4) / 2
     border = '|'
     for i in range(border_len):
@@ -57,8 +69,8 @@ def log_title(title):
     border += '|'
     logging.info(border)
 
-#load all constants
-LINE_WIDTH = int(get_property("LINE_WIDTH", 'CONFIGS'))
+
+
 
 
 
