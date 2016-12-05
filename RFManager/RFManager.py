@@ -45,6 +45,9 @@ def main():
         tstore.file_dump_json()
         tstore.file_dump_xls()
         logging.info('\n' + tstore.get_contents_str())
+
+        rcom.destroy_reader()
+        rcom.rfcom_terminate()
         sys.exit(0)
 
 

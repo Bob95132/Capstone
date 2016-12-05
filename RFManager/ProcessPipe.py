@@ -58,6 +58,12 @@ class ProcessPipe:
 
     #send command line to child's stdin
     def sendline(self, args):
-        str = self.parse_args(args)
-        self.process.sendline(str)
-
+        try:
+            str = self.parse_args(args)
+            self.process.sendline(str)
+        except:
+            if self.process.isalive():
+                return -1
+            else:
+                print 'dead'
+                return 1

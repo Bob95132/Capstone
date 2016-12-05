@@ -7,6 +7,7 @@ class ReaderCom(object):
         self.rfcom_path = get_property("RFCOM_PATH", "CONFIGS")
         self.rfcom_name = get_property("RFCOM_NAME", "CONFIGS")
         self.rfcom_timeout = float(get_property("TIMEOUT", "CONFIGS"))
+        self.rfcom_err = get_property("RFCOM_ERROR_FLAG", "CONFIGS")
         self.cmd_rfdump = get_property("API_DUMPTAGS", "READER_PROPERTIES")
         self.device_name = get_property('DEVICE_NAME', 'READER_PROPERTIES')
         self.com_type = get_property('COM_TYPE', 'READER_PROPERTIES')
@@ -17,19 +18,19 @@ class ReaderCom(object):
         return ProcessPipe(self.rfcom_path + self.rfcom_name, timeout=self.rfcom_timeout)
 
     # method to send -c command to reader using expect on response
-    def reader_communicate(self, cmd):
+    def reader_communicate(self, cmd, fail_flag, success_flag):
         arg_string = '-c %s' % cmd
         logging.debug('executing command: %s' % arg_string)
         err = 0
 
         self.reader.sendline(arg_string)
-        index = self.reader.expect('ERROR', 'RECEIVED_DATA:.*')
+        index = self.reader.expect(self.rfcom_err, fail_flag, success_flag)
 
         if index < 0:  # TIMEOUT reached
             logging.error('Reader sent unexpected response: %s' % self.reader.response)
             report_failed_and_exit('child process timed out.')
 
-        if index == 0:  # ERROR matched on output
+        if index == 0 or index == 1:  # ERROR matched on output
             err = 1
             logging.error('Reader command: %s Failed.' % cmd)
 
@@ -38,12 +39,12 @@ class ReaderCom(object):
     # run setup command on reader
     def setup_reader(self):
         logging.info('setting up RFCom connection for %s using com_type %s' %
-                     (self.evice_name, self.com_type))
+                     (self.device_name, self.com_type))
         arg_string = '-s %s %s' % (self.device_name, self.com_type)
         logging.debug('sending command: %s' % arg_string)
 
         self.reader.sendline(arg_string)
-        index = self.reader.expect('Failed', 'Success')
+        index = self.reader.expect('CONNECTION_FAILURE', 'CONNECTION_SUCCESS')
         if index <= 0:
             logging.error('RFCom output: %s' % self.reader.response)
             report_failed_and_exit('RFCom setup failed.')
@@ -57,7 +58,7 @@ class ReaderCom(object):
         sequence = config_seq.split('|')
 
         for step in sequence:
-            output = self.reader_communicate(step)
+            output = self.reader_communicate(step, 'ERROR', 'RECEIVED_DATA:.*')
             if output[0] == 0:
                 logging.info('RFCom response: %s' % output[1].strip('\n'))
             else:
@@ -67,7 +68,7 @@ class ReaderCom(object):
     # send polling command to reader, process data returned
     def poll_reader(self, tstore):
         logging.info('polling RF reader...')
-        output = self.reader_communicate(self.cmd_rfdump)
+        output = self.reader_communicate(self.cmd_rfdump, 'ERROR', 'RECEIVED_DATA:.*')
         if output[0] == 0:
             logging.info('RFCom response: %s' % output[1].strip('\n'))
             # parse reader data for list of tags
@@ -77,3 +78,35 @@ class ReaderCom(object):
         else:
             logging.error('RFCom Polling ERROR')
             logging.error('RFCom response: %s' % output[1].strip('\n'))
+
+    def destroy_reader(self):
+        logging.info('Destroying reader...')
+
+        arg_string = '-d'
+        logging.debug('sending command: %s' % arg_string)
+        self.reader.sendline(arg_string)
+        index = self.reader.expect(self.rfcom_err, 'CLOSE_FAILURE', 'CLOSE_SUCCESS')
+
+        if index <= 1:
+            logging.error('RFCom destroy ERROR')
+            logging.error('RFCom response: %s' % self.reader.response)
+
+        else:
+            logging.info('Reader destroyed.')
+            logging.info('RFCom response: %s' % self.reader.response.strip('\n'))
+
+    def rfcom_terminate(self):
+        logging.info('Terminating RFCom...')
+
+        arg_string = '-q'
+        logging.debug('sending command: %s' % arg_string)
+
+        self.reader.sendline(arg_string)
+        index = self.reader.expect(self.rfcom_err, 'EXITING')
+
+        if index <= 0:
+            logging.error('Error terminating RFCom')
+            logging.error('RFCom response: %s' % self.reader.response.strip('\n'))
+        else:
+            logging.info('Process Terminated.')
+

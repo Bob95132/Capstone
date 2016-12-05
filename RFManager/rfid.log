@@ -1695,3 +1695,476 @@ TagStore: {
 	-c : 2016-12-05 01:39:25
 }
 
+RFID~[INFO] 2016-12-05-10:40:35, |------------------- RFID Manager -------------------|
+RFID~[INFO] 2016-12-05-10:40:35, starting test...
+RFID~[INFO] 2016-12-05-10:40:38, test response: Hello: ./test 
+RFID~[INFO] 2016-12-05-10:40:38, running reader configuration commands...
+RFID~[DEBUG] 2016-12-05-10:40:38, executing command: -c cmd1
+RFID~[INFO] 2016-12-05-10:40:38, RFCom response: RECEIVED_DATA: -c cmd1
+RFID~[DEBUG] 2016-12-05-10:40:38, executing command: -c cmd2
+RFID~[INFO] 2016-12-05-10:40:38, RFCom response: RECEIVED_DATA: -c cmd2
+RFID~[DEBUG] 2016-12-05-10:40:38, executing command: -c cmd3
+RFID~[INFO] 2016-12-05-10:40:38, RFCom response: RECEIVED_DATA: -c cmd3
+RFID~[INFO] 2016-12-05-10:40:38, polling RF reader...
+RFID~[DEBUG] 2016-12-05-10:40:38, executing command: -c D
+RFID~[INFO] 2016-12-05-10:40:38, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-10:40:40, polling RF reader...
+RFID~[DEBUG] 2016-12-05-10:40:40, executing command: -c D
+RFID~[INFO] 2016-12-05-10:40:40, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-10:40:42, polling RF reader...
+RFID~[DEBUG] 2016-12-05-10:40:42, executing command: -c D
+RFID~[INFO] 2016-12-05-10:40:42, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-10:40:44, polling RF reader...
+RFID~[DEBUG] 2016-12-05-10:40:44, executing command: -c D
+RFID~[INFO] 2016-12-05-10:40:44, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-10:40:46, polling RF reader...
+RFID~[DEBUG] 2016-12-05-10:40:46, executing command: -c D
+RFID~[INFO] 2016-12-05-10:40:46, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-10:40:48, Writing Tags to File...
+RFID~[INFO] 2016-12-05-10:40:48, polling RF reader...
+RFID~[DEBUG] 2016-12-05-10:40:48, executing command: -c D
+RFID~[INFO] 2016-12-05-10:40:48, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-10:40:50, Writing Tags to File...
+RFID~[INFO] 2016-12-05-10:40:50, polling RF reader...
+RFID~[DEBUG] 2016-12-05-10:40:50, executing command: -c D
+RFID~[INFO] 2016-12-05-10:40:50, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-10:40:52, Exiting polling loop...
+RFID~[INFO] 2016-12-05-10:40:52, Writing Tags to File...
+RFID~[INFO] 2016-12-05-10:40:52, 
+TagStore: {
+	D : 2016-12-05 10:40:38,
+	-c : 2016-12-05 10:40:38
+}
+
+RFID~[INFO] 2016-12-05-10:40:52, Destroying reader...
+RFID~[DEBUG] 2016-12-05-10:40:52, executing command: -c -d
+RFID~[INFO] 2016-12-05-10:41:41, |------------------- RFID Manager -------------------|
+RFID~[INFO] 2016-12-05-10:41:41, starting test...
+RFID~[INFO] 2016-12-05-10:41:44, test response: Hello: ./test 
+RFID~[INFO] 2016-12-05-10:41:44, running reader configuration commands...
+RFID~[DEBUG] 2016-12-05-10:41:44, executing command: -c cmd1
+RFID~[INFO] 2016-12-05-10:41:44, RFCom response: RECEIVED_DATA: -c cmd1
+RFID~[DEBUG] 2016-12-05-10:41:44, executing command: -c cmd2
+RFID~[INFO] 2016-12-05-10:41:44, RFCom response: RECEIVED_DATA: -c cmd2
+RFID~[DEBUG] 2016-12-05-10:41:44, executing command: -c cmd3
+RFID~[INFO] 2016-12-05-10:41:44, RFCom response: RECEIVED_DATA: -c cmd3
+RFID~[INFO] 2016-12-05-10:41:44, polling RF reader...
+RFID~[DEBUG] 2016-12-05-10:41:44, executing command: -c D
+RFID~[INFO] 2016-12-05-10:41:44, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-10:41:46, polling RF reader...
+RFID~[DEBUG] 2016-12-05-10:41:46, executing command: -c D
+RFID~[INFO] 2016-12-05-10:41:46, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-10:41:48, polling RF reader...
+RFID~[DEBUG] 2016-12-05-10:41:48, executing command: -c D
+RFID~[INFO] 2016-12-05-10:41:48, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-10:41:49, Exiting polling loop...
+RFID~[INFO] 2016-12-05-10:41:49, Writing Tags to File...
+RFID~[INFO] 2016-12-05-10:41:49, 
+TagStore: {
+	D : 2016-12-05 10:41:44,
+	-c : 2016-12-05 10:41:44
+}
+
+RFID~[INFO] 2016-12-05-10:41:49, Destroying reader...
+RFID~[DEBUG] 2016-12-05-10:41:49, executing command: -c -d
+RFID~[INFO] 2016-12-05-10:47:45, |------------------- RFID Manager -------------------|
+RFID~[INFO] 2016-12-05-10:47:45, starting test...
+RFID~[INFO] 2016-12-05-10:47:48, test response: Hello: ./test 
+RFID~[INFO] 2016-12-05-10:47:48, running reader configuration commands...
+RFID~[DEBUG] 2016-12-05-10:47:48, executing command: -c cmd1
+RFID~[INFO] 2016-12-05-10:47:48, RFCom response: RECEIVED_DATA: -c cmd1
+RFID~[DEBUG] 2016-12-05-10:47:48, executing command: -c cmd2
+RFID~[INFO] 2016-12-05-10:47:48, RFCom response: RECEIVED_DATA: -c cmd2
+RFID~[DEBUG] 2016-12-05-10:47:48, executing command: -c cmd3
+RFID~[INFO] 2016-12-05-10:47:48, RFCom response: RECEIVED_DATA: -c cmd3
+RFID~[INFO] 2016-12-05-10:47:48, polling RF reader...
+RFID~[DEBUG] 2016-12-05-10:47:48, executing command: -c D
+RFID~[INFO] 2016-12-05-10:47:48, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-10:47:50, polling RF reader...
+RFID~[DEBUG] 2016-12-05-10:47:50, executing command: -c D
+RFID~[INFO] 2016-12-05-10:47:50, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-10:47:52, polling RF reader...
+RFID~[DEBUG] 2016-12-05-10:47:52, executing command: -c D
+RFID~[INFO] 2016-12-05-10:47:52, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-10:47:53, Exiting polling loop...
+RFID~[INFO] 2016-12-05-10:47:53, Writing Tags to File...
+RFID~[INFO] 2016-12-05-10:47:53, 
+TagStore: {
+	D : 2016-12-05 10:47:48,
+	-c : 2016-12-05 10:47:48
+}
+
+RFID~[INFO] 2016-12-05-10:47:53, Destroying reader...
+RFID~[DEBUG] 2016-12-05-10:47:53, sending command: -d
+RFID~[INFO] 2016-12-05-10:49:51, |------------------- RFID Manager -------------------|
+RFID~[INFO] 2016-12-05-10:49:51, starting test...
+RFID~[INFO] 2016-12-05-10:49:53, test response: Hello: ./test 
+RFID~[INFO] 2016-12-05-10:49:53, running reader configuration commands...
+RFID~[DEBUG] 2016-12-05-10:49:53, executing command: -c cmd1
+RFID~[INFO] 2016-12-05-10:49:53, RFCom response: RECEIVED_DATA: -c cmd1
+RFID~[DEBUG] 2016-12-05-10:49:53, executing command: -c cmd2
+RFID~[INFO] 2016-12-05-10:49:53, RFCom response: RECEIVED_DATA: -c cmd2
+RFID~[DEBUG] 2016-12-05-10:49:53, executing command: -c cmd3
+RFID~[INFO] 2016-12-05-10:49:53, RFCom response: RECEIVED_DATA: -c cmd3
+RFID~[INFO] 2016-12-05-10:49:53, polling RF reader...
+RFID~[DEBUG] 2016-12-05-10:49:53, executing command: -c D
+RFID~[INFO] 2016-12-05-10:49:53, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-10:49:54, Exiting polling loop...
+RFID~[INFO] 2016-12-05-10:49:54, Writing Tags to File...
+RFID~[INFO] 2016-12-05-10:49:54, 
+TagStore: {
+	D : 2016-12-05 10:49:53,
+	-c : 2016-12-05 10:49:53
+}
+
+RFID~[INFO] 2016-12-05-10:49:54, Destroying reader...
+RFID~[DEBUG] 2016-12-05-10:49:54, sending command: -d some
+RFID~[INFO] 2016-12-05-10:53:03, |------------------- RFID Manager -------------------|
+RFID~[INFO] 2016-12-05-10:53:03, starting test...
+RFID~[INFO] 2016-12-05-10:53:05, test response: Hello: ./test 
+RFID~[INFO] 2016-12-05-10:53:05, running reader configuration commands...
+RFID~[DEBUG] 2016-12-05-10:53:05, executing command: -c cmd1
+RFID~[INFO] 2016-12-05-10:53:05, RFCom response: RECEIVED_DATA: -c cmd1
+RFID~[DEBUG] 2016-12-05-10:53:05, executing command: -c cmd2
+RFID~[INFO] 2016-12-05-10:53:05, RFCom response: RECEIVED_DATA: -c cmd2
+RFID~[DEBUG] 2016-12-05-10:53:05, executing command: -c cmd3
+RFID~[INFO] 2016-12-05-10:53:05, RFCom response: RECEIVED_DATA: -c cmd3
+RFID~[INFO] 2016-12-05-10:53:05, polling RF reader...
+RFID~[DEBUG] 2016-12-05-10:53:05, executing command: -c D
+RFID~[INFO] 2016-12-05-10:53:05, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-10:53:07, polling RF reader...
+RFID~[DEBUG] 2016-12-05-10:53:07, executing command: -c D
+RFID~[INFO] 2016-12-05-10:53:07, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-10:53:09, Exiting polling loop...
+RFID~[INFO] 2016-12-05-10:53:09, Writing Tags to File...
+RFID~[INFO] 2016-12-05-10:53:09, 
+TagStore: {
+	D : 2016-12-05 10:53:05,
+	-c : 2016-12-05 10:53:05
+}
+
+RFID~[INFO] 2016-12-05-10:53:09, Destroying reader...
+RFID~[DEBUG] 2016-12-05-10:53:09, sending command: -d
+RFID~[INFO] 2016-12-05-10:58:26, |------------------- RFID Manager -------------------|
+RFID~[INFO] 2016-12-05-10:58:26, starting test...
+RFID~[INFO] 2016-12-05-10:58:28, test response: Hello: ./test 
+RFID~[INFO] 2016-12-05-10:58:28, running reader configuration commands...
+RFID~[DEBUG] 2016-12-05-10:58:28, executing command: -c cmd1
+RFID~[INFO] 2016-12-05-10:58:28, RFCom response: RECEIVED_DATA: -c cmd1
+RFID~[DEBUG] 2016-12-05-10:58:28, executing command: -c cmd2
+RFID~[INFO] 2016-12-05-10:58:28, RFCom response: RECEIVED_DATA: -c cmd2
+RFID~[DEBUG] 2016-12-05-10:58:28, executing command: -c cmd3
+RFID~[INFO] 2016-12-05-10:58:28, RFCom response: RECEIVED_DATA: -c cmd3
+RFID~[INFO] 2016-12-05-10:58:28, polling RF reader...
+RFID~[DEBUG] 2016-12-05-10:58:28, executing command: -c D
+RFID~[INFO] 2016-12-05-10:58:28, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-10:58:30, Exiting polling loop...
+RFID~[INFO] 2016-12-05-10:58:30, Writing Tags to File...
+RFID~[INFO] 2016-12-05-10:58:30, 
+TagStore: {
+	D : 2016-12-05 10:58:28,
+	-c : 2016-12-05 10:58:28
+}
+
+RFID~[INFO] 2016-12-05-10:58:30, Destroying reader...
+RFID~[DEBUG] 2016-12-05-10:58:30, sending command: -d
+RFID~[ERROR] 2016-12-05-10:58:30, RFCom destroy ERROR
+RFID~[ERROR] 2016-12-05-10:58:30, RFCom response: 
+RFID~[INFO] 2016-12-05-10:58:30, Terminating RFCom...
+RFID~[DEBUG] 2016-12-05-10:58:30, sending command: -q
+RFID~[ERROR] 2016-12-05-10:58:30, Error terminating RFCom
+RFID~[ERROR] 2016-12-05-10:58:30, RFCom response: 
+RFID~[INFO] 2016-12-05-10:59:13, |------------------- RFID Manager -------------------|
+RFID~[INFO] 2016-12-05-10:59:13, starting test...
+RFID~[INFO] 2016-12-05-10:59:15, test response: Hello: ./test 
+RFID~[INFO] 2016-12-05-10:59:15, running reader configuration commands...
+RFID~[DEBUG] 2016-12-05-10:59:15, executing command: -c cmd1
+RFID~[INFO] 2016-12-05-10:59:15, RFCom response: RECEIVED_DATA: -c cmd1
+RFID~[DEBUG] 2016-12-05-10:59:15, executing command: -c cmd2
+RFID~[INFO] 2016-12-05-10:59:15, RFCom response: RECEIVED_DATA: -c cmd2
+RFID~[DEBUG] 2016-12-05-10:59:15, executing command: -c cmd3
+RFID~[INFO] 2016-12-05-10:59:15, RFCom response: RECEIVED_DATA: -c cmd3
+RFID~[INFO] 2016-12-05-10:59:15, polling RF reader...
+RFID~[DEBUG] 2016-12-05-10:59:15, executing command: -c D
+RFID~[INFO] 2016-12-05-10:59:15, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-10:59:17, polling RF reader...
+RFID~[DEBUG] 2016-12-05-10:59:17, executing command: -c D
+RFID~[INFO] 2016-12-05-10:59:17, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-10:59:18, Exiting polling loop...
+RFID~[INFO] 2016-12-05-10:59:18, Writing Tags to File...
+RFID~[INFO] 2016-12-05-10:59:18, 
+TagStore: {
+	D : 2016-12-05 10:59:15,
+	-c : 2016-12-05 10:59:15
+}
+
+RFID~[INFO] 2016-12-05-10:59:18, Destroying reader...
+RFID~[DEBUG] 2016-12-05-10:59:18, sending command: -d
+RFID~[ERROR] 2016-12-05-10:59:18, RFCom destroy ERROR
+RFID~[ERROR] 2016-12-05-10:59:18, RFCom response: 
+RFID~[INFO] 2016-12-05-11:01:34, |------------------- RFID Manager -------------------|
+RFID~[INFO] 2016-12-05-11:01:34, starting test...
+RFID~[INFO] 2016-12-05-11:01:36, test response: Hello: ./test 
+RFID~[INFO] 2016-12-05-11:01:36, running reader configuration commands...
+RFID~[DEBUG] 2016-12-05-11:01:36, executing command: -c cmd1
+RFID~[INFO] 2016-12-05-11:01:36, RFCom response: RECEIVED_DATA: -c cmd1
+RFID~[DEBUG] 2016-12-05-11:01:36, executing command: -c cmd2
+RFID~[INFO] 2016-12-05-11:01:37, RFCom response: RECEIVED_DATA: -c cmd2
+RFID~[DEBUG] 2016-12-05-11:01:37, executing command: -c cmd3
+RFID~[INFO] 2016-12-05-11:01:37, RFCom response: RECEIVED_DATA: -c cmd3
+RFID~[INFO] 2016-12-05-11:01:37, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:01:37, executing command: -c D
+RFID~[INFO] 2016-12-05-11:01:37, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:01:39, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:01:39, executing command: -c D
+RFID~[INFO] 2016-12-05-11:01:39, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:01:41, Exiting polling loop...
+RFID~[INFO] 2016-12-05-11:01:41, Writing Tags to File...
+RFID~[INFO] 2016-12-05-11:01:41, 
+TagStore: {
+	D : 2016-12-05 11:01:37,
+	-c : 2016-12-05 11:01:37
+}
+
+RFID~[INFO] 2016-12-05-11:01:41, Destroying reader...
+RFID~[DEBUG] 2016-12-05-11:01:41, sending command: -d arg
+RFID~[ERROR] 2016-12-05-11:01:41, RFCom destroy ERROR
+RFID~[ERROR] 2016-12-05-11:01:41, RFCom response: 
+RFID~[INFO] 2016-12-05-11:02:20, |------------------- RFID Manager -------------------|
+RFID~[INFO] 2016-12-05-11:02:20, starting test...
+RFID~[INFO] 2016-12-05-11:02:23, test response: Hello: ./test 
+RFID~[INFO] 2016-12-05-11:02:23, running reader configuration commands...
+RFID~[DEBUG] 2016-12-05-11:02:23, executing command: -c cmd1
+RFID~[INFO] 2016-12-05-11:02:23, RFCom response: RECEIVED_DATA: -c cmd1
+RFID~[DEBUG] 2016-12-05-11:02:23, executing command: -c cmd2
+RFID~[INFO] 2016-12-05-11:02:23, RFCom response: RECEIVED_DATA: -c cmd2
+RFID~[DEBUG] 2016-12-05-11:02:23, executing command: -c cmd3
+RFID~[INFO] 2016-12-05-11:02:23, RFCom response: RECEIVED_DATA: -c cmd3
+RFID~[INFO] 2016-12-05-11:02:23, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:02:23, executing command: -c D
+RFID~[INFO] 2016-12-05-11:02:23, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:02:25, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:02:25, executing command: -c D
+RFID~[INFO] 2016-12-05-11:02:25, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:02:26, Exiting polling loop...
+RFID~[INFO] 2016-12-05-11:02:26, Writing Tags to File...
+RFID~[INFO] 2016-12-05-11:02:26, 
+TagStore: {
+	D : 2016-12-05 11:02:23,
+	-c : 2016-12-05 11:02:23
+}
+
+RFID~[INFO] 2016-12-05-11:02:26, Destroying reader...
+RFID~[DEBUG] 2016-12-05-11:02:26, sending command: -d
+RFID~[ERROR] 2016-12-05-11:02:26, RFCom destroy ERROR
+RFID~[ERROR] 2016-12-05-11:02:26, RFCom response: 
+RFID~[INFO] 2016-12-05-11:02:55, |------------------- RFID Manager -------------------|
+RFID~[INFO] 2016-12-05-11:02:55, starting test...
+RFID~[INFO] 2016-12-05-11:02:58, test response: Hello: ./test 
+RFID~[INFO] 2016-12-05-11:02:58, running reader configuration commands...
+RFID~[DEBUG] 2016-12-05-11:02:58, executing command: -c cmd1
+RFID~[INFO] 2016-12-05-11:02:58, RFCom response: RECEIVED_DATA: -c cmd1
+RFID~[DEBUG] 2016-12-05-11:02:58, executing command: -c cmd2
+RFID~[INFO] 2016-12-05-11:02:58, RFCom response: RECEIVED_DATA: -c cmd2
+RFID~[DEBUG] 2016-12-05-11:02:58, executing command: -c cmd3
+RFID~[INFO] 2016-12-05-11:02:58, RFCom response: RECEIVED_DATA: -c cmd3
+RFID~[INFO] 2016-12-05-11:02:58, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:02:58, executing command: -c D
+RFID~[INFO] 2016-12-05-11:02:58, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:03:00, Exiting polling loop...
+RFID~[INFO] 2016-12-05-11:03:00, Writing Tags to File...
+RFID~[INFO] 2016-12-05-11:03:00, 
+TagStore: {
+	D : 2016-12-05 11:02:58,
+	-c : 2016-12-05 11:02:58
+}
+
+RFID~[INFO] 2016-12-05-11:03:00, Destroying reader...
+RFID~[DEBUG] 2016-12-05-11:03:00, sending command: -c
+RFID~[ERROR] 2016-12-05-11:03:00, RFCom destroy ERROR
+RFID~[ERROR] 2016-12-05-11:03:00, RFCom response: 
+RFID~[INFO] 2016-12-05-11:05:43, |------------------- RFID Manager -------------------|
+RFID~[INFO] 2016-12-05-11:05:43, starting test...
+RFID~[INFO] 2016-12-05-11:05:45, test response: Hello: ./test 
+RFID~[INFO] 2016-12-05-11:05:45, running reader configuration commands...
+RFID~[DEBUG] 2016-12-05-11:05:45, executing command: -c cmd1
+RFID~[INFO] 2016-12-05-11:05:45, RFCom response: RECEIVED_DATA: -c cmd1
+RFID~[DEBUG] 2016-12-05-11:05:45, executing command: -c cmd2
+RFID~[INFO] 2016-12-05-11:05:45, RFCom response: RECEIVED_DATA: -c cmd2
+RFID~[DEBUG] 2016-12-05-11:05:45, executing command: -c cmd3
+RFID~[INFO] 2016-12-05-11:05:45, RFCom response: RECEIVED_DATA: -c cmd3
+RFID~[INFO] 2016-12-05-11:05:45, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:05:45, executing command: -c D
+RFID~[INFO] 2016-12-05-11:05:46, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:05:48, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:05:48, executing command: -c D
+RFID~[INFO] 2016-12-05-11:05:48, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:05:50, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:05:50, executing command: -c D
+RFID~[INFO] 2016-12-05-11:05:50, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:05:52, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:05:52, executing command: -c D
+RFID~[INFO] 2016-12-05-11:05:52, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:05:54, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:05:54, executing command: -c D
+RFID~[INFO] 2016-12-05-11:05:54, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:05:55, Exiting polling loop...
+RFID~[INFO] 2016-12-05-11:05:55, Writing Tags to File...
+RFID~[INFO] 2016-12-05-11:05:55, 
+TagStore: {
+	D : 2016-12-05 11:05:46,
+	-c : 2016-12-05 11:05:46
+}
+
+RFID~[INFO] 2016-12-05-11:05:55, Destroying reader...
+RFID~[DEBUG] 2016-12-05-11:05:55, sending command: -d
+RFID~[ERROR] 2016-12-05-11:05:55, RFCom destroy ERROR
+RFID~[ERROR] 2016-12-05-11:05:55, RFCom response: 
+RFID~[INFO] 2016-12-05-11:06:12, |------------------- RFID Manager -------------------|
+RFID~[INFO] 2016-12-05-11:06:12, starting test...
+RFID~[INFO] 2016-12-05-11:06:14, test response: Hello: ./test 
+RFID~[INFO] 2016-12-05-11:06:14, running reader configuration commands...
+RFID~[DEBUG] 2016-12-05-11:06:14, executing command: -c cmd1
+RFID~[INFO] 2016-12-05-11:06:14, RFCom response: RECEIVED_DATA: -c cmd1
+RFID~[DEBUG] 2016-12-05-11:06:14, executing command: -c cmd2
+RFID~[INFO] 2016-12-05-11:06:15, RFCom response: RECEIVED_DATA: -c cmd2
+RFID~[DEBUG] 2016-12-05-11:06:15, executing command: -c cmd3
+RFID~[INFO] 2016-12-05-11:06:15, RFCom response: RECEIVED_DATA: -c cmd3
+RFID~[INFO] 2016-12-05-11:06:15, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:06:15, executing command: -c D
+RFID~[INFO] 2016-12-05-11:06:15, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:06:17, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:06:17, executing command: -c D
+RFID~[INFO] 2016-12-05-11:06:17, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:06:17, Exiting polling loop...
+RFID~[INFO] 2016-12-05-11:06:17, Writing Tags to File...
+RFID~[INFO] 2016-12-05-11:06:17, 
+TagStore: {
+	D : 2016-12-05 11:06:15,
+	-c : 2016-12-05 11:06:15
+}
+
+RFID~[INFO] 2016-12-05-11:06:17, Destroying reader...
+RFID~[DEBUG] 2016-12-05-11:06:17, sending command: -d
+RFID~[ERROR] 2016-12-05-11:06:20, RFCom destroy ERROR
+RFID~[ERROR] 2016-12-05-11:06:20, RFCom response: -d
+
+RFID~[INFO] 2016-12-05-11:06:46, |------------------- RFID Manager -------------------|
+RFID~[INFO] 2016-12-05-11:06:46, starting test...
+RFID~[INFO] 2016-12-05-11:06:48, test response: Hello: ./test 
+RFID~[INFO] 2016-12-05-11:06:48, running reader configuration commands...
+RFID~[DEBUG] 2016-12-05-11:06:48, executing command: -c cmd1
+RFID~[INFO] 2016-12-05-11:06:48, RFCom response: RECEIVED_DATA: -c cmd1
+RFID~[DEBUG] 2016-12-05-11:06:48, executing command: -c cmd2
+RFID~[INFO] 2016-12-05-11:06:48, RFCom response: RECEIVED_DATA: -c cmd2
+RFID~[DEBUG] 2016-12-05-11:06:48, executing command: -c cmd3
+RFID~[INFO] 2016-12-05-11:06:48, RFCom response: RECEIVED_DATA: -c cmd3
+RFID~[INFO] 2016-12-05-11:06:48, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:06:48, executing command: -c D
+RFID~[INFO] 2016-12-05-11:06:48, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:06:50, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:06:50, executing command: -c D
+RFID~[INFO] 2016-12-05-11:06:50, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:06:52, Exiting polling loop...
+RFID~[INFO] 2016-12-05-11:06:52, Writing Tags to File...
+RFID~[INFO] 2016-12-05-11:06:52, 
+TagStore: {
+	D : 2016-12-05 11:06:48,
+	-c : 2016-12-05 11:06:48
+}
+
+RFID~[INFO] 2016-12-05-11:06:52, Destroying reader...
+RFID~[DEBUG] 2016-12-05-11:06:52, sending command: -d
+RFID~[ERROR] 2016-12-05-11:06:55, RFCom destroy ERROR
+RFID~[ERROR] 2016-12-05-11:06:55, RFCom response: -d
+
+RFID~[INFO] 2016-12-05-11:06:55, Terminating RFCom...
+RFID~[DEBUG] 2016-12-05-11:06:55, sending command: -q
+RFID~[ERROR] 2016-12-05-11:06:57, Error terminating RFCom
+RFID~[ERROR] 2016-12-05-11:06:57, RFCom response: -d
+-q
+RECEIVED_DATA: -d -q
+RFID~[INFO] 2016-12-05-11:07:53, |------------------- RFID Manager -------------------|
+RFID~[INFO] 2016-12-05-11:07:53, starting test...
+RFID~[INFO] 2016-12-05-11:07:56, test response: Hello: ./test 
+RFID~[INFO] 2016-12-05-11:07:56, running reader configuration commands...
+RFID~[DEBUG] 2016-12-05-11:07:56, executing command: -c cmd1
+RFID~[INFO] 2016-12-05-11:07:56, RFCom response: RECEIVED_DATA: -c cmd1
+RFID~[DEBUG] 2016-12-05-11:07:56, executing command: -c cmd2
+RFID~[INFO] 2016-12-05-11:07:56, RFCom response: RECEIVED_DATA: -c cmd2
+RFID~[DEBUG] 2016-12-05-11:07:56, executing command: -c cmd3
+RFID~[INFO] 2016-12-05-11:07:56, RFCom response: RECEIVED_DATA: -c cmd3
+RFID~[INFO] 2016-12-05-11:07:56, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:07:56, executing command: -c D
+RFID~[INFO] 2016-12-05-11:07:56, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:07:58, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:07:58, executing command: -c D
+RFID~[INFO] 2016-12-05-11:07:58, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:08:00, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:08:00, executing command: -c D
+RFID~[INFO] 2016-12-05-11:08:00, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:08:02, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:08:02, executing command: -c D
+RFID~[INFO] 2016-12-05-11:08:02, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:08:04, Exiting polling loop...
+RFID~[INFO] 2016-12-05-11:08:04, Writing Tags to File...
+RFID~[INFO] 2016-12-05-11:08:04, 
+TagStore: {
+	D : 2016-12-05 11:07:56,
+	-c : 2016-12-05 11:07:56
+}
+
+RFID~[INFO] 2016-12-05-11:08:04, Destroying reader...
+RFID~[DEBUG] 2016-12-05-11:08:04, sending command: -d
+RFID~[ERROR] 2016-12-05-11:08:06, RFCom destroy ERROR
+RFID~[ERROR] 2016-12-05-11:08:06, RFCom response: -d
+
+RFID~[INFO] 2016-12-05-11:08:06, Terminating RFCom...
+RFID~[DEBUG] 2016-12-05-11:08:06, sending command: -q
+RFID~[ERROR] 2016-12-05-11:08:09, Error terminating RFCom
+RFID~[ERROR] 2016-12-05-11:08:09, RFCom response: -d
+-q
+RECEIVED_DATA: -d -q
+RFID~[INFO] 2016-12-05-11:11:51, |------------------- RFID Manager -------------------|
+RFID~[INFO] 2016-12-05-11:11:51, starting test...
+RFID~[INFO] 2016-12-05-11:11:54, test response: Hello: ./test 
+RFID~[INFO] 2016-12-05-11:11:54, running reader configuration commands...
+RFID~[DEBUG] 2016-12-05-11:11:54, executing command: -c cmd1
+RFID~[INFO] 2016-12-05-11:11:54, RFCom response: RECEIVED_DATA: -c cmd1
+RFID~[DEBUG] 2016-12-05-11:11:54, executing command: -c cmd2
+RFID~[INFO] 2016-12-05-11:11:54, RFCom response: RECEIVED_DATA: -c cmd2
+RFID~[DEBUG] 2016-12-05-11:11:54, executing command: -c cmd3
+RFID~[INFO] 2016-12-05-11:11:54, RFCom response: RECEIVED_DATA: -c cmd3
+RFID~[INFO] 2016-12-05-11:11:54, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:11:54, executing command: -c D
+RFID~[INFO] 2016-12-05-11:11:54, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:11:55, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:11:55, executing command: -c D
+RFID~[INFO] 2016-12-05-11:11:55, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:11:56, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:11:56, executing command: -c D
+RFID~[INFO] 2016-12-05-11:11:56, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:11:57, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:11:57, executing command: -c D
+RFID~[INFO] 2016-12-05-11:11:57, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:11:58, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:11:58, executing command: -c D
+RFID~[INFO] 2016-12-05-11:11:58, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:11:59, Writing Tags to File...
+RFID~[INFO] 2016-12-05-11:11:59, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:11:59, executing command: -c D
+RFID~[INFO] 2016-12-05-11:11:59, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:12:00, Writing Tags to File...
+RFID~[INFO] 2016-12-05-11:12:00, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:12:00, executing command: -c D
+RFID~[INFO] 2016-12-05-11:12:00, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:12:01, Writing Tags to File...
+RFID~[INFO] 2016-12-05-11:12:01, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:12:01, executing command: -c D
+RFID~[INFO] 2016-12-05-11:12:02, RFCom response: RECEIVED_DATA: -c D
+RFID~[INFO] 2016-12-05-11:12:03, Writing Tags to File...
+RFID~[INFO] 2016-12-05-11:12:03, polling RF reader...
+RFID~[DEBUG] 2016-12-05-11:12:03, executing command: -c D
+RFID~[ERROR] 2016-12-05-11:12:05, Reader sent unexpected response: 
+RFID~[ERROR] 2016-12-05-11:12:05, FAILED: child process timed out.
+RFID~[ERROR] 2016-12-05-11:12:05, RF Manager EXITING
