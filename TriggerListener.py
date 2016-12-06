@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import subprocess
+import os
 import time
 
 #adjust for where your switch is connected
@@ -13,6 +14,7 @@ while True:
   #assuming the script to call is long enough we can ignore bouncing
   if GPIO.input(buttonPin):
     #this is the script that will be called (as root)
+    os.chdir('/home/pi/dev/Capstone')
     bash = subprocess.call('/home/pi/dev/Capstone/start_collection.sh')
     if bash == 0:
       GPIO.output(LEDPin, GPIO.HIGH)
