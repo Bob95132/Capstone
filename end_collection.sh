@@ -2,8 +2,8 @@
 
 ps | grep -f RF_PID
 RUNNING=$?
-read -r PID<RF_PID
+read -r PID <RF_PID
 
 if [ $RUNNING -eq 0 ]; then
-   kill -2 $PID
+   kill -s SIGTERM $PID
 fi
