@@ -15,7 +15,7 @@ def main():
             file = sorted(filter(lambda x: '.json' in x, dir), reverse=True)[0]
 
             print file
-            fd = open(RFSCAN_PATH + '/' + file, 'r')
+            fd = open(RFSCAN_PATH + '/' + file, 'r+')
             obj = json.load(fd)
             print '%d Tags Identified' % len(obj['data'])
             print json.dumps(obj)
