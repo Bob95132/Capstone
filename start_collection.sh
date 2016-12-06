@@ -2,7 +2,7 @@
 
 python ./RFManager/RFManager.py &
 
-$PID = $!
+PID=$!
 echo $PID
 echo $PID > RF_PID
 
