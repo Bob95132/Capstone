@@ -116,6 +116,6 @@ class ReaderCom(object):
         tags = filter(None, re.split('[\n\r]', re.sub('RECEIVED_DATA:', '', data)))
         tags = filter(lambda x: ',' in x, tags)
         tags = map(lambda x: re.split('[,]', x)[1].strip(' '), tags)
-        return filter(lambda x: x.isdigit, tags)
+        return filter(lambda x: x.isdigit(), tags)
 
 
