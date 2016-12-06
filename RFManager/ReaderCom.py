@@ -114,13 +114,14 @@ class ReaderCom(object):
 
     def clean_data(self, data):
         tags = filter(None, re.split('[\n\r]', re.sub('RECEIVED_DATA:', '', data)))
-        print '1---' + str(tags)
         tags = filter(lambda x: ',' in x, tags)
-        print '2---' + str(tags)
-        tags = map(lambda x: re.split('[,]', x)[1].strip(' '), tags)
-        print '3---' + str(tags)
-        ids = filter(lambda x: x.isdigit(), tags)
-        print '4---' + str(ids)
+        tags = map(lambda x: re.split('[,]', x), tags)
+        ids = []
+        for line in tags:
+            for field in line:
+                if field.isdigit():
+                    ids.append(field)
+                    break
         return ids
 
 
