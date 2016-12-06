@@ -22,7 +22,7 @@ class ReaderCom(object):
         return ProcessPipe(self.rfcom_path + self.rfcom_name, timeout=self.rfcom_timeout)
 
     # method to send -c command to reader using expect on response
-    def reader_communicate(self, cmd, fail_flag, success_flag, opt_flag=None):
+    def reader_communicate(self, cmd, fail_flag, success_flag, opt_flag=basestring):
         arg_string = '-c %s' % cmd
         logging.debug('executing command: %s' % arg_string)
         err = 0
