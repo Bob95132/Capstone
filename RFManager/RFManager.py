@@ -4,20 +4,27 @@
 
 from TagStore import *
 from ReaderCom import *
+import signal
 import time
 
-def finish_and_dump(rcom, tstore):
+sig_flag = 0
+
+def finish_and_dump(rcom, tstore, dump=1):
     logging.info('Exiting polling loop...')
-    logging.info('Writing Tags to File...')
-    tstore.file_dump_json()
-    tstore.file_dump_xls()
-    logging.info('\n' + tstore.get_contents_str())
+    if dump:
+        logging.info('Writing Tags to File...')
+        tstore.file_dump_json()
+        tstore.file_dump_xls()
+        logging.info('\n' + tstore.get_contents_str())
 
     rcom.destroy_reader()
     rcom.rfcom_terminate()
 
     logging.info('RF Manager EXITING')
     sys.exit(0)
+
+def handle_signal(signum, stack):
+    sig_flag = 1
 
 def main():
     #Check files
@@ -43,8 +50,10 @@ def main():
     tstore = TagStore()
     fwrite_counter = 0
 
+    signal.signal(signal.NSIG, handle_signal)
+
     try:
-        while report_dir_exists():
+        while report_dir_exists() and not sig_flag:
             rcom.poll_reader(tstore)
 
             time.sleep(POLLING_INTERVAL)
@@ -57,13 +66,7 @@ def main():
                 fwrite_counter = 0
         else:
             logging.error('Report directory removed.')
-            logging.info('Exiting polling loop...')
-
-            rcom.destroy_reader()
-            rcom.rfcom_terminate()
-
-            logging.info('RF Manager EXITING')
-            sys.exit(0)
+            finish_and_dump(rcom, tstore, sig_flag)
 
     except KeyboardInterrupt:
         finish_and_dump(rcom, tstore)
