@@ -1,4 +1,6 @@
-#Utils for RFID Manager
+# Utils - Utilities for RFManager
+# Author: Mike G. Abood
+# Capstone Fall 2016
 
 import ConfigParser
 import logging
@@ -36,13 +38,16 @@ def setup_logger(logfile, verbose):
         console.setLevel(logging.INFO)
     logging.getLogger('').addHandler(console)
 
+def report_dir_exists():
+    return os.path.exists(get_property("RFSCAN_PATH", "CONFIGS"))
+
 #checks for required files and fails out if not found
 def check_files():
     if not os.path.exists(CONFIG_FILENAME):
         report_failed_and_exit('config file %s not found.' % CONFIG_FILENAME)
 
     scan_data_dir = get_property("RFSCAN_PATH", "CONFIGS")
-    if not os.path.exists(scan_data_dir):
+    if not report_dir_exists():
         os.makedirs(scan_data_dir)
 
 # Reports setup failure and exits the program with error status
@@ -53,7 +58,7 @@ def report_failed_and_exit(message=None):
     logging.error("RF Manager EXITING")
     sys.exit(1)
 
-
+#create pretty title in logs
 def log_title(title):
     LINE_WIDTH = int(get_property("LINE_WIDTH", 'CONFIGS'))
 
