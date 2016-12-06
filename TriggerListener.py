@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import subprocess
 import os
 import time
+import signal
 
 #adjust for where your switch is connected
 buttonPin = 11
