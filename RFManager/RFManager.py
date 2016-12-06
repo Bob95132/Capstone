@@ -50,10 +50,10 @@ def main():
     tstore = TagStore()
     fwrite_counter = 0
 
-    signal.signal(signal.SIG1, handle_signal)
-    signal.signal(signal.SIG2, handle_signal)
-    signal.signal(signal.SIG9, handle_signal)
-    signal.signal(signal.SIG19, handle_signal)
+    signal.signal(signal.SIGHUP, handle_signal)
+    signal.signal(signal.SIGINT, handle_signal)
+    signal.signal(signal.SIGKILL, handle_signal)
+    signal.signal(signal.SIGSTOP, handle_signal)
 
     try:
         while report_dir_exists() and not sig_flag:
