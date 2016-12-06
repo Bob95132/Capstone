@@ -6,7 +6,6 @@ import time
 #adjust for where your switch is connected
 buttonPin = 11
 LEDPin = 15
-GPIO.cleanup()
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(buttonPin,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(LEDPin, GPIO.OUT)
