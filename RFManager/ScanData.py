@@ -14,7 +14,7 @@ def main():
 
             file = sorted(filter(lambda x: '.json' in x, dir), reverse=True)[0]
 
-            print + '\n'
+            print file + '\n'
             fd = open(RFSCAN_PATH + '/' + file, 'r+')
             obj = json.load(fd)['RF Tags Identified']
             if 'data' in obj:
