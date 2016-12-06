@@ -14,7 +14,8 @@ def main():
 
             file = sorted(filter(lambda x: '.json' in x, dir), reverse=True)[0]
 
-            fd = open(file, 'r')
+            print file
+            fd = open(file, 'r+')
             obj = json.load(fd)
             print '%d Tags Identified' % len(obj['data'])
             print json.dumps(obj)
