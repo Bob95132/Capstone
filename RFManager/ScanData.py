@@ -10,6 +10,8 @@ def main():
     if report_dir_exists():
         try:
             dir = [f for f in listdir(RFSCAN_PATH) if isfile(join(RFSCAN_PATH, f))]
+            print 'ScanDir: ' + str(dir)
+
             file = sorted(filter(lambda x: '.json' in x, dir), reverse=True)[0]
 
             fd = open(file, 'r')
