@@ -16,7 +16,7 @@ def main():
 
             print file
             fd = open(RFSCAN_PATH + '/' + file, 'r+')
-            obj = json.load(fd)
+            obj = json.load(fd)['RF Tags Identified']
             if 'data' in obj:
                 print '%d Tags Identified' % len(obj['data'])
                 print json.dumps(obj)
