@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ps | grep -f RF_PID
-RUNNING = $?
+RUNNING=$?
 
 if [ $RUNNING -eq 0 ] then
     echo 'RFManager already running.'
