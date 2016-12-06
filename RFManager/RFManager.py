@@ -65,7 +65,7 @@ def main():
             logging.info('RF Manager EXITING')
             sys.exit(0)
 
-    except BaseException:
+    except KeyboardInterrupt:
         finish_and_dump(rcom, tstore)
 
 
