@@ -19,7 +19,7 @@ def main():
             obj = json.load(fd)['RF Tags Identified']
             if 'data' in obj:
                 print '%d Tags Identified' % len(obj['data'])
-                print json.dumps(obj)
+                print json.dumps(obj, indent=4, sort_keys=True)
             else:
                 print 'No Tags Identified'
 
