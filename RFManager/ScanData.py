@@ -8,20 +8,23 @@ RFSCAN_FILE = get_property("RFSCAN_FILE", "CONFIGS")
 
 def main():
     if report_dir_exists():
+        try:
+            dir = [f for f in listdir(RFSCAN_PATH) if isfile(join(RFSCAN_PATH, f))]
+            print 'ScanDir: ' + str(dir)
 
-        dir = [f for f in listdir(RFSCAN_PATH) if isfile(join(RFSCAN_PATH, f))]
-        print 'ScanDir: ' + str(dir)
+            file = sorted(filter(lambda x: '.json' in x, dir), reverse=True)[0]
 
-        file = sorted(filter(lambda x: '.json' in x, dir), reverse=True)[0]
+            print file
+            fd = open(RFSCAN_PATH + '/' + file, 'r+')
+            obj = json.load(fd)
+            if 'data' in obj:
+                print '%d Tags Identified' % len(obj['data'])
+                print json.dumps(obj)
+            else:
+                print 'No Tags Identified'
 
-        print file
-        fd = open(RFSCAN_PATH + '/' + file, 'r+')
-        obj = json.load(fd)
-        print '%d Tags Identified' % len(obj['data'])
-        print json.dumps(obj)
-
-
-        #print 'Output file not found'
+        except:
+            print 'Output file not found'
     else:
         print 'ScanData dir not found'
 
