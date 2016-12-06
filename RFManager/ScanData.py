@@ -12,14 +12,13 @@ def main():
             dir = [f for f in listdir(RFSCAN_PATH) if isfile(join(RFSCAN_PATH, f))]
             file = sorted(filter(lambda x: '.json' in x, dir), reverse=True)[0]
 
-        except:
-            print 'Output file not found'
-
             fd = open(file, 'r')
             obj = json.load(fd)
             print '%d Tags Identified' % len(obj['data'])
             print json.dumps(obj)
 
+        except:
+            print 'Output file not found'
     else:
         print 'ScanData dir not found'
 
