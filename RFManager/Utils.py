@@ -28,7 +28,7 @@ def setup_logger(logfile, verbose, console):
                         format='RFID~[%(levelname)s] %(asctime)s, %(message)s',
                         datefmt='%Y-%m-%d-%H:%M:%S',
                         filename=logfile,
-                        filemode='a')
+                        filemode='w+')
     if console:
         console = logging.StreamHandler()
         formatter = logging.Formatter('RFID~[%(levelname)s] %(asctime)s, %(message)s', '%Y-%m-%d-%H:%M:%S')
