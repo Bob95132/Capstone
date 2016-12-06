@@ -27,7 +27,8 @@ class ProcessPipe:
     def expect(self, *matches):
         expects = []
         for match in matches:
-            expects.append(match)
+            if match:
+                expects.append(match)
         expects.append(pexpect.EOF)
         expects.append(pexpect.TIMEOUT)
 
