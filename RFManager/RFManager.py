@@ -52,7 +52,6 @@ def main():
 
     signal.signal(signal.SIGHUP, handle_signal)
     signal.signal(signal.SIGINT, handle_signal)
-    signal.signal(signal.SIGKILL, handle_signal)
     signal.signal(signal.SIGSTOP, handle_signal)
 
     try:
