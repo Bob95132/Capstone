@@ -14,6 +14,7 @@ int main(int argc, char **argv) {
    char *indexOfNL;
    int port = -1;
    int quit = 0;
+   int read = 0;
 
    do {
       fscanf(stdin, "%s", cmd);
@@ -69,14 +70,28 @@ int main(int argc, char **argv) {
                //write to port when select reports ready
                SendData(data, strlen(data), port); // write to port
                //read from port when select is ready and until the buffer is empty
-               while (select(port + 1, &rfds, NULL, NULL, &tv) > 0) {
+
+               while (select(port + 1, &rfds, NULL, NULL, &tv) > 0) {                
                   if (ReceiveData(data, sizeof(data) - 1, port) == -1) // read from port
                      break;
-                  fprintf(stdout, "RECEIVED_DATA: %s", data);   
+   
+                  read = 1;
+
+                  if (data[0] == 'E')
+                     fprintf(stdout, "ERROR: Invalid Reader Command\n");
+                  else
+                     fprintf(stdout, "RECEIVED_DATA: %s", data);
+   
                   FD_SET(port, &rfds);
                   tv.tv_sec = 1;
                   tv.tv_usec = 0;
                }
+
+               if (!read) {
+                  fprintf(stdout, "CMD_SUCCESS\n");
+                  read = 0;
+               }
+               
             }
             else
                fprintf(stdout, "ERROR: port not opened\n");
