@@ -52,7 +52,7 @@ def main():
 
     signal.signal(signal.SIGHUP, handle_signal)
     signal.signal(signal.SIGINT, handle_signal)
-    signal.signal(signal.SIGSTOP, handle_signal)
+    signal.signal(signal.SIGTERM, handle_signal)
 
     try:
         while report_dir_exists() and not sig_flag:
