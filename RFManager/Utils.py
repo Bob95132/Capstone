@@ -23,8 +23,13 @@ def get_property(keyname, section):
 
 # Sets up logger with the configured log file
 def setup_logger(logfile, verbose, console):
+    if verbose:
+        log_level = logging.DEBUG
+    else:
+        log_level = logging.INFO
+
     logging.getLogger('').handlers = []
-    logging.basicConfig(level=logging.DEBUG,
+    logging.basicConfig(level=log_level,
                         format='RFID~[%(levelname)s] %(asctime)s, %(message)s',
                         datefmt='%Y-%m-%d-%H:%M:%S',
                         filename=logfile,
@@ -33,10 +38,7 @@ def setup_logger(logfile, verbose, console):
         console = logging.StreamHandler()
         formatter = logging.Formatter('RFID~[%(levelname)s] %(asctime)s, %(message)s', '%Y-%m-%d-%H:%M:%S')
         console.setFormatter(formatter)
-        if verbose:
-            console.setLevel(logging.DEBUG)
-        else:
-            console.setLevel(logging.INFO)
+        console.setLevel(log_level)
         logging.getLogger('').addHandler(console)
 
 def report_dir_exists():
