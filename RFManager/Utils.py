@@ -1,4 +1,6 @@
-#Utils for RFID Manager
+# Utils - Utilities for RFManager
+# Author: Mike G. Abood
+# Capstone Fall 2016
 
 import ConfigParser
 import logging
@@ -53,7 +55,7 @@ def report_failed_and_exit(message=None):
     logging.error("RF Manager EXITING")
     sys.exit(1)
 
-
+#create pretty title in logs
 def log_title(title):
     LINE_WIDTH = int(get_property("LINE_WIDTH", 'CONFIGS'))
 

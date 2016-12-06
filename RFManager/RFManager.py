@@ -1,4 +1,7 @@
-#RFManager
+# RFManager - An interface RFID Reader Device
+# Author: Mike G. Abood
+# Capstone Fall 2016
+
 from TagStore import *
 from ReaderCom import *
 import re
@@ -21,7 +24,7 @@ def main():
     rcom = ReaderCom()
     logging.info('%s response: %s' % (rcom.rfcom_name, rcom.reader.response.strip('\n')))
 
-    #rcom.setup_reader()
+    rcom.setup_reader()
     rcom.config_reader()
 
     tstore = TagStore()

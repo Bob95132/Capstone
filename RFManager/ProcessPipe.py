@@ -1,3 +1,7 @@
+# ProcessPipe - Wrapper Class for pexpect.spawn
+# Author: Mike G. Abood
+# Capstone Fall 2016
+
 import pexpect
 import time
 

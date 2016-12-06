@@ -1,3 +1,7 @@
+# ReaderCom - All Reader Interactions Communicating on ProcessPipe
+# Author: Mike G. Abood
+# Capstone Fall 2016
+
 from Utils import *
 from ProcessPipe import *
 import re

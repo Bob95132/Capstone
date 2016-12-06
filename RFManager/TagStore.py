@@ -1,3 +1,7 @@
+# TagStore - Object for Storing RFID Tags
+# Author: Mike G. Abood
+# Capstone Fall 2016
+
 import collections
 import datetime
 from Utils import *
