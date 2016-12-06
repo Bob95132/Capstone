@@ -24,6 +24,7 @@ def finish_and_dump(rcom, tstore, dump=1):
     sys.exit(0)
 
 def handle_signal(signum, stack):
+    global sig_flag
     sig_flag = 1
 
 def main():
@@ -49,6 +50,7 @@ def main():
 
     tstore = TagStore()
     fwrite_counter = 0
+    global sig_flag
 
     signal.signal(signal.SIGHUP, handle_signal)
     signal.signal(signal.SIGINT, handle_signal)
