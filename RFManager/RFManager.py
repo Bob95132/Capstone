@@ -7,6 +7,20 @@ from ReaderCom import *
 import re
 import time
 
+def finish_and_dump(rcom, tstore):
+    logging.info('Exiting polling loop...')
+    logging.info('Writing Tags to File...')
+    tstore.file_dump_json()
+    tstore.file_dump_xls()
+    logging.info('\n' + tstore.get_contents_str())
+
+    rcom.destroy_reader()
+    rcom.rfcom_terminate()
+
+    logging.info('RF Manager EXITING')
+    log_title('')
+    sys.exit(0)
+
 def main():
     #Check files
     check_files()
@@ -31,7 +45,7 @@ def main():
     fwrite_counter = 0
 
     try:
-        while(True):
+        while report_dir_exists():
             rcom.poll_reader(tstore)
 
             time.sleep(POLLING_INTERVAL)
@@ -42,17 +56,11 @@ def main():
                 tstore.file_dump_json()
                 tstore.file_dump_xls()
                 fwrite_counter = 0
+        else:
+            finish_and_dump(rcom, tstore)
 
     except KeyboardInterrupt:
-        logging.info('Exiting polling loop...')
-        logging.info('Writing Tags to File...')
-        tstore.file_dump_json()
-        tstore.file_dump_xls()
-        logging.info('\n' + tstore.get_contents_str())
-
-        rcom.destroy_reader()
-        rcom.rfcom_terminate()
-        sys.exit(0)
+        finish_and_dump(rcom, tstore)
 
 
 
