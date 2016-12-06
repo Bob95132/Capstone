@@ -74,11 +74,9 @@ class ReaderCom(object):
         output = self.reader_communicate(self.cmd_rfdump, 'ERROR', 'RECEIVED_DATA:.*')
         if output[0] == 0:
             logging.info('RFCom response: %s' % output[1].strip('\n'))
-            # parse reader data for list of tags
-            tags = filter(None, re.split('[\n\r]', re.sub('RECEIVED_DATA:', '', output[1])))
-            ids = map(lambda x: re.split('[,]', x)[1].strip(' '), filter(lambda x: ',' in x,tags))
-            # add these tags to TagStore object
-            tstore.add_tags(ids)
+
+            tags = self.clean_data(output[1])
+            tstore.add_tags(tags)
         else:
             logging.error('RFCom Polling ERROR')
             logging.error('RFCom response: %s' % output[1].strip('\n'))
@@ -113,4 +111,10 @@ class ReaderCom(object):
             logging.error('RFCom response: %s' % self.reader.response.strip('\n'))
         else:
             logging.info('Process Terminated.')
+
+    def clean_data(self, data):
+        tags = filter(None, re.split('[\n\r]', re.sub('RECEIVED_DATA:', '', data)))
+        tags = filter(lambda x: ',' in x and 'OD' not in x, tags)
+        return map(lambda x: re.split('[,]', x)[1].strip(' '), tags)
+
 

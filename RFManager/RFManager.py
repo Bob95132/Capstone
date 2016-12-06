@@ -18,7 +18,6 @@ def finish_and_dump(rcom, tstore):
     rcom.rfcom_terminate()
 
     logging.info('RF Manager EXITING')
-    log_title('')
     sys.exit(0)
 
 def main():
