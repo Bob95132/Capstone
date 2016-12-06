@@ -4,7 +4,6 @@
 
 from TagStore import *
 from ReaderCom import *
-import re
 import time
 
 def finish_and_dump(rcom, tstore):
@@ -28,9 +27,10 @@ def main():
     POLLING_INTERVAL = float(get_property("POLLING_INTERVAL", "CONFIGS"))
     FWRITE_INTERVAL = float(get_property("FWRITE_INTERVAL", "CONFIGS"))
     VERBOSE_lOGS = int(get_property('VERBOSE', 'CONFIGS'))
+    CONSOLE_LOGS = int(get_property('CONSOLE', 'CONFIGS'))
 
     #setup logger
-    setup_logger(LOG_FILE, VERBOSE_lOGS)
+    setup_logger(LOG_FILE, VERBOSE_lOGS, CONSOLE_LOGS)
     log_title('RFID Manager')
 
     #initialize RFCom
