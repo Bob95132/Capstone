@@ -56,7 +56,14 @@ def main():
                 tstore.file_dump_xls()
                 fwrite_counter = 0
         else:
-            finish_and_dump(rcom, tstore)
+            logging.error('Report directory removed.')
+            logging.info('Exiting polling loop...')
+
+            rcom.destroy_reader()
+            rcom.rfcom_terminate()
+
+            logging.info('RF Manager EXITING')
+            sys.exit(0)
 
     except KeyboardInterrupt:
         finish_and_dump(rcom, tstore)
