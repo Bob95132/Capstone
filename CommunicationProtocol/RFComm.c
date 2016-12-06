@@ -81,7 +81,6 @@ int main(int argc, char **argv) {
    char cmd[3], sPort[50], data[1000];
    int port = -1;
    int quit = 0;
-   int read = 0;
 
    do {
       fscanf(stdin, "%s", cmd);
