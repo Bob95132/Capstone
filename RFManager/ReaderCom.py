@@ -22,13 +22,16 @@ class ReaderCom(object):
         return ProcessPipe(self.rfcom_path + self.rfcom_name, timeout=self.rfcom_timeout)
 
     # method to send -c command to reader using expect on response
-    def reader_communicate(self, cmd, fail_flag, success_flag):
+    def reader_communicate(self, cmd, fail_flag, *success_flag):
         arg_string = '-c %s' % cmd
         logging.debug('executing command: %s' % arg_string)
         err = 0
 
+        expects = [self.rfcom_err, fail_flag]
+        for flag in success_flag:
+            expects.append(flag)
         self.reader.sendline(arg_string)
-        index = self.reader.expect(self.rfcom_err, fail_flag, success_flag)
+        index = self.reader.expect(expects)
 
         if index < 0:  # TIMEOUT reached
             logging.error('Reader sent unexpected response: %s' % self.reader.response)
@@ -62,7 +65,7 @@ class ReaderCom(object):
         sequence = config_seq.split('|')
 
         for step in sequence:
-            output = self.reader_communicate(step, 'ERROR', 'RECEIVED_DATA:.*')
+            output = self.reader_communicate(step, 'ERROR', 'CMD_SUCCESS', 'RECEIVED_DATA:.*')
             if output[0] == 0:
                 logging.info('RFCom response: %s' % output[1].strip('\n'))
             else:
