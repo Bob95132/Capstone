@@ -49,7 +49,11 @@ def check_files():
 
     scan_data_dir = get_property("RFSCAN_PATH", "CONFIGS")
     if not report_dir_exists():
-        os.makedirs(scan_data_dir)
+        try:
+            os.makedirs(scan_data_dir)
+        except OSError:
+            logging.error('Unable to create reporting directory. Check location of RFSCAN_PATH')
+            report_failed_and_exit()
 
 # Reports setup failure and exits the program with error status
 def report_failed_and_exit(message=None):
