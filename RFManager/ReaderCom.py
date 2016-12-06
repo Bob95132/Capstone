@@ -22,14 +22,13 @@ class ReaderCom(object):
         return ProcessPipe(self.rfcom_path + self.rfcom_name, timeout=self.rfcom_timeout)
 
     # method to send -c command to reader using expect on response
-    def reader_communicate(self, cmd, fail_flag, success_flag):
+    def reader_communicate(self, cmd, fail_flag, success_flag, opt_flag=None):
         arg_string = '-c %s' % cmd
         logging.debug('executing command: %s' % arg_string)
         err = 0
 
         self.reader.sendline(arg_string)
-        index = self.reader.expect(self.rfcom_err, fail_flag, success_flag)
-
+        index = self.reader.expect(self.rfcom_err, fail_flag, success_flag, opt_flag)
         if index < 0:  # TIMEOUT reached
             logging.error('Reader sent unexpected response: %s' % self.reader.response)
             report_failed_and_exit('child process timed out.')
@@ -62,7 +61,7 @@ class ReaderCom(object):
         sequence = config_seq.split('|')
 
         for step in sequence:
-            output = self.reader_communicate(step, 'ERROR', 'RECEIVED_DATA:.*')
+            output = self.reader_communicate(step, 'ERROR', 'RECEIVED_DATA:.*', 'CMD_SUCCESS')
             if output[0] == 0:
                 logging.info('RFCom response: %s' % output[1].strip('\n'))
             else:
@@ -75,11 +74,9 @@ class ReaderCom(object):
         output = self.reader_communicate(self.cmd_rfdump, 'ERROR', 'RECEIVED_DATA:.*')
         if output[0] == 0:
             logging.info('RFCom response: %s' % output[1].strip('\n'))
-            # parse reader data for list of tags
-            tags = filter(None, re.split('[\n\r]', re.sub('RECEIVED_DATA:', '', output[1])))
-            ids = map(lambda x: re.split('[,]', x)[1].strip(' '), filter(lambda x: ',' in x,tags))
-            # add these tags to TagStore object
-            tstore.add_tags(ids)
+
+            tags = self.clean_data(output[1])
+            tstore.add_tags(tags)
         else:
             logging.error('RFCom Polling ERROR')
             logging.error('RFCom response: %s' % output[1].strip('\n'))
@@ -114,4 +111,10 @@ class ReaderCom(object):
             logging.error('RFCom response: %s' % self.reader.response.strip('\n'))
         else:
             logging.info('Process Terminated.')
+
+    def clean_data(self, data):
+        tags = filter(None, re.split('[\n\r]', re.sub('RECEIVED_DATA:', '', data)))
+        tags = filter(lambda x: ',' in x and x.isdigit(), tags)
+        return map(lambda x: re.split('[,]', x)[1].strip(' '), tags)
+
 

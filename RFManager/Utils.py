@@ -22,21 +22,22 @@ def get_property(keyname, section):
         sys.exit(1)
 
 # Sets up logger with the configured log file
-def setup_logger(logfile, verbose):
+def setup_logger(logfile, verbose, console):
     logging.getLogger('').handlers = []
     logging.basicConfig(level=logging.DEBUG,
                         format='RFID~[%(levelname)s] %(asctime)s, %(message)s',
                         datefmt='%Y-%m-%d-%H:%M:%S',
                         filename=logfile,
                         filemode='a')
-    console = logging.StreamHandler()
-    formatter = logging.Formatter('RFID~[%(levelname)s] %(asctime)s, %(message)s', '%Y-%m-%d-%H:%M:%S')
-    console.setFormatter(formatter)
-    if verbose:
-        console.setLevel(logging.DEBUG)
-    else:
-        console.setLevel(logging.INFO)
-    logging.getLogger('').addHandler(console)
+    if console:
+        console = logging.StreamHandler()
+        formatter = logging.Formatter('RFID~[%(levelname)s] %(asctime)s, %(message)s', '%Y-%m-%d-%H:%M:%S')
+        console.setFormatter(formatter)
+        if verbose:
+            console.setLevel(logging.DEBUG)
+        else:
+            console.setLevel(logging.INFO)
+        logging.getLogger('').addHandler(console)
 
 def report_dir_exists():
     return os.path.exists(get_property("RFSCAN_PATH", "CONFIGS"))
