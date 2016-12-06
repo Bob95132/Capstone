@@ -73,7 +73,7 @@ class ReaderCom(object):
         logging.info('polling RF reader...')
         output = self.reader_communicate(self.cmd_rfdump, 'ERROR', 'RECEIVED_DATA:.*')
         if output[0] == 0:
-            logging.info('RFCom response: %s' % output[1].strip('\n'))
+            logging.info('RFCom response: \n%s' % output[1].strip('\n'))
 
             tags = self.clean_data(output[1])
             tstore.add_tags(tags)
