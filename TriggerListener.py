@@ -15,8 +15,10 @@ while True:
   if GPIO.input(buttonPin):
     #this is the script that will be called (as root)
     os.chdir('/home/pi/dev/Capstone')
+    mount = subprocess.call('sudo mount /dev/sdb1 /mnt/usb');
     bash = subprocess.call('/home/pi/dev/Capstone/start_collection.sh')
-    if bash == 0:
+    
+    if bash == 0 and (mount == 0 or mount == 16):
       GPIO.output(LEDPin, GPIO.HIGH)
     else:
        GPIO.output(LEDPin, GPIO.LOW)
