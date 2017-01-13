@@ -8,7 +8,7 @@ import time
 class ProcessPipe:
     def __init__(self, command, user=None, expect=None, timeout=0.1):
         self.command = command
-        self.returnCode = None
+        self.returnCode = None 
         self.response = None
         self.timeout = float(timeout)
         if user is not None:
