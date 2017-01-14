@@ -34,8 +34,8 @@ def main():
     #Read configs
     POLLING_INTERVAL = float(get_property("POLLING_INTERVAL", "CONFIGS"))
     FWRITE_INTERVAL = float(get_property("FWRITE_INTERVAL", "CONFIGS"))
-    VERBOSE_lOGS = int(get_property('VERBOSE', 'CONFIGS'))
-    CONSOLE_LOGS = int(get_property('CONSOLE', 'CONFIGS'))
+    VERBOSE_lOGS = int(get_property('VERBOSE_LOGGING', 'CONFIGS'))
+    CONSOLE_LOGS = int(get_property('CONSOLE_LOGGING', 'CONFIGS'))
 
     #setup logger
     setup_logger(LOG_FILE, VERBOSE_lOGS, CONSOLE_LOGS)
