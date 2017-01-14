@@ -39,13 +39,13 @@ int WriteProtocol(char *data, int port) {
    return SendData(data, strlen(data), port); // write to port
 }
 
-void ReadProtocol(int port, int sec, int flush) {
+void ReadProtocol(int port, int sec, int usec, int flush) {
    fd_set rfds;
    struct timeval tv;
 
    FD_ZERO(&rfds);
    FD_SET(port, &rfds);
-   tv.tv_usec = 1;
+   tv.tv_usec = usec;
    tv.tv_sec = sec;
    char data[1000];
    int read = 0;
@@ -60,7 +60,7 @@ void ReadProtocol(int port, int sec, int flush) {
             fprintf(stdout, "RECEIVED_DATA: %s", data);
       }
       FD_SET(port, &rfds);
-      tv.tv_usec = 1;
+      tv.tv_usec = usec;
       tv.tv_sec = sec;
       read = 1;
    }
@@ -97,9 +97,9 @@ int main(int argc, char **argv) {
       else if (!strcmp(cmd, "-c")) { //send/receive data from port
          if (fscanf(stdin, " %99s", data) == 1) {
             if (port != -1) { 
-               ReadProtocol(port, 0, 1);
+               ReadProtocol(port, 0, 5000, 1);
                WriteProtocol(data, port);
-               ReadProtocol(port, 1, 0); 
+               ReadProtocol(port, 1, 0, 0); 
             }
             else
                fprintf(stdout, "ERROR: port not opened\n");
