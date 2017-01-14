@@ -97,8 +97,8 @@ int main(int argc, char **argv) {
       else if (!strcmp(cmd, "-c")) { //send/receive data from port
          if (fscanf(stdin, " %99s", data) == 1) {
             if (port != -1) { 
-               ReadProtocol(port, 0, 5000, 1);
                WriteProtocol(data, port);
+               ReadProtocol(port, 0, 1000, 1);
                ReadProtocol(port, 1, 0, 0); 
             }
             else
