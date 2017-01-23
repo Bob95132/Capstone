@@ -49,6 +49,7 @@ void ReadProtocol(int port, int sec, int usec, int flush) {
    tv.tv_sec = sec;
    char data[1000];
    int read = 0;
+   int firstRead = 1;
 
    while (select(port + 1, &rfds, NULL, NULL, &tv) > 0 && 
           ReceiveData(data, sizeof(data) - 1, port) > 0) {
@@ -56,14 +57,21 @@ void ReadProtocol(int port, int sec, int usec, int flush) {
       if (!flush) {
          if (data[0] == 'E')
             fprintf(stdout, "ERROR: Invalid Reader Command\n");
-         else
+         else if (firstRead) {
             fprintf(stdout, "RECEIVED_DATA: %s", data);
+            firstRead = 0;
+         }
+         else
+            fprintf(stdout, "%s", data);
       }
       FD_SET(port, &rfds);
       tv.tv_usec = usec;
       tv.tv_sec = sec;
       read = 1;
    }
+
+   if (!flush && read) 
+      fprintf(stdout, "END\m");   
 
    if (!flush && !read)
       fprintf(stdout, "CMD_SUCCESS\n");
