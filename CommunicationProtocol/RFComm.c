@@ -71,7 +71,7 @@ void ReadProtocol(int port, int sec, int usec, int flush) {
    }
 
    if (!flush && read) 
-      fprintf(stdout, "END\m");   
+      fprintf(stdout, "END\n");   
 
    if (!flush && !read)
       fprintf(stdout, "CMD_SUCCESS\n");
