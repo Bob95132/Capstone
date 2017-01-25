@@ -12,6 +12,8 @@ class ReaderCom(object):
         self.rfcom_name = get_property("RFCOM_NAME", "CONFIGS")
         self.rfcom_timeout = float(get_property("TIMEOUT", "CONFIGS"))
         self.rfcom_err = get_property("RFCOM_ERROR_FLAG", "CONFIGS")
+        self.rfcom_data_flag = get_property("RFCOM_DATA_RECV_FLAG", "CONFIGS")
+        self.rfcom_data_term_flag = get_property("RFCOM_DATA_TERM_FLAG", "CONFIGS")
         self.cmd_rfdump = get_property("API_DUMPTAGS", "READER_PROPERTIES")
         self.device_name = get_property('DEVICE_NAME', 'READER_PROPERTIES')
         self.com_type = get_property('COM_TYPE', 'READER_PROPERTIES')
@@ -61,7 +63,7 @@ class ReaderCom(object):
         sequence = config_seq.split('|')
 
         for step in sequence:
-            output = self.reader_communicate(step, 'ERROR', 'RECEIVED_DATA:.*', 'CMD_SUCCESS')
+            output = self.reader_communicate(step, 'ERROR', 'CMD_SUCCESS', opt_flag='RECEIVED_DATA:.*')
             if output[0] == 0:
                 logging.info('RFCom response: %s' % output[1].strip('\n'))
             else:
@@ -71,11 +73,12 @@ class ReaderCom(object):
     # send polling command to reader, process data returned
     def poll_reader(self, tstore):
         logging.info('polling RF reader...')
-        output = self.reader_communicate(self.cmd_rfdump, 'ERROR', 'RECEIVED_DATA:.*')
+        output = self.reader_communicate(self.cmd_rfdump, 'ERROR', 'END')
         if output[0] == 0:
             logging.info('RFCom response: \n%s' % output[1].strip('\n'))
 
-            tags = self.clean_data(output[1])
+            data = self.extract_data(output[1])
+            tags = self.clean_data(data)
             tstore.add_tags(tags)
         else:
             logging.error('RFCom Polling ERROR')
@@ -111,6 +114,12 @@ class ReaderCom(object):
             logging.error('RFCom response: %s' % self.reader.response.strip('\n'))
         else:
             logging.info('Process Terminated.')
+
+    def extract_data(self, data):
+        # 'some garbage data RECEIVED_DATA: tag1, tag2, tag3, END'
+        start = data.index(self.rfcom_data_flag) + len(self.rfcom_data_flag)
+        end = data.index(self.rfcom_data_term_flag)
+        return data[start:end].strip()
 
     def clean_data(self, data):
         tags = filter(None, re.split('[\n\r]', re.sub('RECEIVED_DATA:', '', data)))

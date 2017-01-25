@@ -8,7 +8,7 @@ import time
 class ProcessPipe:
     def __init__(self, command, user=None, expect=None, timeout=0.1):
         self.command = command
-        self.returnCode = None 
+        self.returnCode = None
         self.response = None
         self.timeout = float(timeout)
         if user is not None:
@@ -33,11 +33,10 @@ class ProcessPipe:
         expects.append(pexpect.TIMEOUT)
 
         index = self.process.expect(expects, timeout=self.timeout)
+        self.response = self.process.before + self.process.after
         if index > len(expects) - 3:
-            self.response = self.process.before
             return -1
         else:
-            self.response = self.process.after
             return index
 
     #capture full output stream on timeout
