@@ -33,10 +33,11 @@ class ProcessPipe:
         expects.append(pexpect.TIMEOUT)
 
         index = self.process.expect(expects, timeout=self.timeout)
-        self.response = self.process.before + self.process.after
         if index > len(expects) - 3:
+            self.response = self.process.before + self.process.after
             return -1
         else:
+            self.response = self.process.before
             return index
 
     #capture full output stream on timeout

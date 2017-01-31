@@ -1,0 +1,5 @@
+*.pyc
+RFID_scan_data*.json
+*.xlsx
+*.idea
+.DS_Store
