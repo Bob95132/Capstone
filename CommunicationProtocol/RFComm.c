@@ -65,8 +65,8 @@ void ReadProtocol(int port, int sec, int usec, int flush) {
             fprintf(stdout, "%s", data);
       }
       FD_SET(port, &rfds);
-      tv.tv_usec = usec;
-      tv.tv_sec = sec;
+      tv.tv_usec = 10;
+      tv.tv_sec = 0;
       read = 1;
    }
 
