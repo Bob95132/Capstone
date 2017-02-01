@@ -32,7 +32,7 @@ class ReaderCom(object):
         self.reader.sendline(arg_string)
         index = self.reader.expect(self.rfcom_err, fail_flag, success_flag, opt_flag)
         if index < 0:  # TIMEOUT reached
-            logging.error('Reader timed out or sent EOF. Response: %s' % self.reader.response)
+            logging. error('Reader timed out or sent EOF. Response: %s' % self.reader.response)
             report_failed_and_exit('child process timed out.')
 
         if index == 0 or index == 1:  # ERROR matched on output
