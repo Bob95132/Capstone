@@ -6,7 +6,7 @@ ui = PiUi()
 page = ui.new_ui_page(title="RFConnect")
 title = page.add_textbox("Hello, world!")
 
-#current_dir = os.path.dirname(os.path.abspath(__file__))
+current_dir = os.path.dirname(os.path.abspath(__file__))
 
 class RFServerUI(object):
 
