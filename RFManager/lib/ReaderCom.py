@@ -21,29 +21,6 @@ class ReaderCom(object):
         self.com_type = get_property('COM_TYPE', 'READER_PROPERTIES')
         self.reader = self.rfcom_init()
 
-        self.status_dir = get_property("RF_STATUS_PATH", "CONFIGS")
-        self.status_filename = get_property("RF_STATUS_FILE", "CONFIGS")
-        self.write_status_file(start_time, init=True)
-
-    # Create, or append a line to the RF_STATUS file
-    def write_status_file(self, append_str=None, append_lst=None, init=False):
-        try:
-            if init:
-                fd = open(self.status_dir + self.status_filename, 'a+')
-            else:
-                fd = open(self.status_dir + self.status_filename, 'w')
-
-            if append_str:
-                fd.write(append_str)
-
-            if append_lst:
-                fd.writelines(append_lst)
-
-            fd.close()
-
-        except (OSError, IOError) as e:
-            logging.error('error writing RF_STATUS file.')
-
     # Initialize ProcessPipe object
     def rfcom_init(self):
         logging.info('starting %s...' % self.rfcom_name)

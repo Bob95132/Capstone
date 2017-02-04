@@ -1,5 +1,7 @@
 from piui import PiUi
+import RFStatusCheck
 import os
+import subprocess
 import time
 
 ui = PiUi()
@@ -16,6 +18,12 @@ class RFServerUI(object):
         self.img = None
         self.ui = PiUi()
         self.src = None
+        self.code_color = {
+            0 : 'grey',
+            1 : 'green',
+            2 : 'blue',
+            3 : 'red'
+        }
 
     def main_menu(self):
         self.page = self.ui.new_ui_page(title="RFConnect")
@@ -34,18 +42,17 @@ class RFServerUI(object):
 
     def on_start_click(self):
         print "Start RFManager"
+        subprocess.call('./start_collecton.sh')
 
     def on_stop_click(self):
         print "Stop RFManager"
+        subprocess.call('./end_collection.sh')
 
     def get_rf_status(self):
         print "Get the status"
-        active = False
-        #resolve status
-        if active:
-            return "<p style=\"color:green;\">Scanning Inventory</p>"
-        else:
-            return "<p style=\"color:red;\">Waiting to Scan</p>"
+        (code, message) = RFStatusCheck.report_status()
+
+        return "<p style=\"color:%s;\">%s</p>" % (self.code_color[code], message)
 
     def main(self):
         self.main_menu()

@@ -25,7 +25,7 @@ def finish_and_dump(rcom, tstore, dump=1):
     rcom.rfcom_terminate()
 
     logging.info('RF Manager EXITING')
-    report_success_and_exit('Data collection finished - ' % timer.capture_stop_time())
+    report_success_and_exit('%s - Data collection finished.' % timer.capture_stop_time())
 
 def handle_signal(signum, stack):
     global sig_flag
@@ -50,8 +50,6 @@ def main():
 
     #initialize RFCom
     rcom = ReaderCom(timer.timestamp_start)
-    logging.info('%s response: %s' % (rcom.rfcom_name, rcom.reader.response.strip('\n')))
-
     rcom.setup_reader()
     rcom.config_reader()
 
@@ -61,6 +59,8 @@ def main():
     signal.signal(signal.SIGHUP, handle_signal)
     signal.signal(signal.SIGINT, handle_signal)
     signal.signal(signal.SIGTERM, handle_signal)
+
+    write_status_file('10 %s' % timer.timestamp_start_pretty, init=True)
 
     try:
         while report_dir_exists() and not sig_flag:
