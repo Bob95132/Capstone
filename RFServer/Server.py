@@ -31,7 +31,7 @@ class RFServerUI(object):
         space = self.page.add_textbox("<p></p>", "h1")
         start = self.page.add_button("Start Data Collection", self.on_start_click)
         stop = self.page.add_button("End Data Collection", self.on_stop_click)
-        space = self.page.add_textbox("<p></p>", "h1")
+        space = self.page.add_textbox("<p>\n\n</p>", "h1")
         status_box = self.page.add_textbox("RFID Data Collection Status:", "h2")
         status = self.page.add_textbox("<p>\n</p>", "p")
         status.set_text("<p style=\"color:grey;\">Checking Status...</p>")
