@@ -7,8 +7,8 @@ import logging
 import sys
 import os
 
-CONFIG_FILENAME = 'RFManager/rfid.conf'
-LOG_FILE = 'RFManager/rfid.log'
+CONFIG_FILENAME = 'RFManager/conf/rfid.conf'
+LOG_FILE = 'RFManager/logs/rfid.log'
 EXIT_SUCCESS = 0
 
 # Gets the value for a given key 'keyname' from the properties file 'filepath'
@@ -19,7 +19,7 @@ def get_property(keyname, section):
         return cp.get(section, keyname)
     except ConfigParser.NoOptionError:
         logging.error("Option %s not found in configuration file: %s Quitting..." % (keyname, CONFIG_FILENAME))
-        sys.exit(1)
+        report_failed_and_exit("Requested Config not found in file: " + CONFIG_FILENAME)
 
 # Sets up logger with the configured log file
 def setup_logger(logfile, verbose, console):
@@ -55,7 +55,7 @@ def check_files():
             os.makedirs(scan_data_dir)
         except OSError:
             logging.error('Unable to create reporting directory. Check location of RFSCAN_PATH')
-            report_failed_and_exit()
+            report_failed_and_exit('Unable to create reporting directory. Check location of RFSCAN_PATH')
 
 # Reports setup failure and exits the program with error status
 def report_failed_and_exit(message=None):
@@ -64,6 +64,14 @@ def report_failed_and_exit(message=None):
 
     logging.error("RF Manager EXITING")
     sys.exit(1)
+
+def report_success_and_exit(message=None):
+    if message:
+        logging.info('SUCCESS: %s' % message)
+    else:
+        logging.info('SUCCESS: RFManager finished data collection.')
+    sys.exit(0)
+
 
 #create pretty title in logs
 def log_title(title):

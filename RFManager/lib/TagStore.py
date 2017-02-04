@@ -9,23 +9,23 @@ import json
 import xlsxwriter
 
 class TagStore:
-    def __init__(self):
+    def __init__(self, start_timestamp):
         self.size = 0
         self.tag_map = collections.defaultdict()
         self.dirpath = get_property("RFSCAN_PATH", "CONFIGS")
         self.filename = get_property("RFSCAN_FILE", "CONFIGS")
-        self.filetime = self.timestamp_file()
+        self.file_time = start_timestamp
         self.start_time = self.timestamp_pretty()
 
     def add_tags(self, ids):
         for id in ids:
-            if id not in self.tag_map:
-                self.tag_map[id] = self.timestamp_pretty()
+            self.tag_map[id] = self.timestamp_pretty()
+
         self.size = len(self.tag_map)
 
     def file_dump_json(self):
         fn = self.dirpath + '/'
-        fn += self.filename + self.filetime
+        fn += self.filename + self.file_time
         fn += '.json'
 
         json_data = {
@@ -43,7 +43,7 @@ class TagStore:
 
     def file_dump_xls(self):
         fn = self.dirpath + '/'
-        fn += self.filename + self.filetime
+        fn += self.filename + self.file_time
         fn += '.xlsx'
 
         title = 'RFID Tag Collection Report'
@@ -91,6 +91,3 @@ class TagStore:
 
     def timestamp_pretty(self):
         return '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
-
-    def timestamp_file(self):
-        return '{:%Y-%m-%d_%H.%M.%S}'.format(datetime.datetime.now())

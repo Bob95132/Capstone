@@ -7,18 +7,44 @@ from ProcessPipe import *
 import re
 
 class ReaderCom(object):
-    def __init__(self):
+    def __init__(self, start_time):
         self.rfcom_path = get_property("RFCOM_PATH", "CONFIGS")
         self.rfcom_name = get_property("RFCOM_NAME", "CONFIGS")
+
         self.rfcom_timeout = float(get_property("TIMEOUT", "CONFIGS"))
         self.rfcom_err = get_property("RFCOM_ERROR_FLAG", "CONFIGS")
         self.rfcom_data_flag = get_property("RFCOM_DATA_RECV_FLAG", "CONFIGS")
         self.rfcom_data_term_flag = get_property("RFCOM_DATA_TERM_FLAG", "CONFIGS")
+
         self.cmd_rfdump = get_property("API_DUMPTAGS", "READER_PROPERTIES")
         self.device_name = get_property('DEVICE_NAME', 'READER_PROPERTIES')
         self.com_type = get_property('COM_TYPE', 'READER_PROPERTIES')
         self.reader = self.rfcom_init()
 
+        self.status_dir = get_property("RF_STATUS_PATH", "CONFIGS")
+        self.status_filename = get_property("RF_STATUS_FILE", "CONFIGS")
+        self.write_status_file(start_time, init=True)
+
+    # Create, or append a line to the RF_STATUS file
+    def write_status_file(self, append_str=None, append_lst=None, init=False):
+        try:
+            if init:
+                fd = open(self.status_dir + self.status_filename, 'a+')
+            else:
+                fd = open(self.status_dir + self.status_filename, 'w')
+
+            if append_str:
+                fd.write(append_str)
+
+            if append_lst:
+                fd.writelines(append_lst)
+
+            fd.close()
+
+        except (OSError, IOError) as e:
+            logging.error('error writing RF_STATUS file.')
+
+    # Initialize ProcessPipe object
     def rfcom_init(self):
         logging.info('starting %s...' % self.rfcom_name)
         return ProcessPipe(self.rfcom_path + self.rfcom_name, timeout=self.rfcom_timeout)
@@ -84,6 +110,7 @@ class ReaderCom(object):
             logging.error('RFCom Polling ERROR')
             logging.error('RFCom response: %s' % output[1].strip('\n'))
 
+    # Tear down connection with reader
     def destroy_reader(self):
         logging.info('Destroying reader...')
 
@@ -100,6 +127,7 @@ class ReaderCom(object):
             logging.info('Reader destroyed.')
             logging.info('RFCom response: %s' % self.reader.response.strip('\n'))
 
+    # Terminate child process
     def rfcom_terminate(self):
         logging.info('Terminating RFCom...')
 
@@ -115,12 +143,14 @@ class ReaderCom(object):
         else:
             logging.info('Process Terminated.')
 
+    # Extract tag data from reader output
     def extract_data(self, data):
         # 'some garbage data RECEIVED_DATA: tag1, tag2, tag3, END'
         start = data.index(self.rfcom_data_flag) + len(self.rfcom_data_flag)
         end = data.index(self.rfcom_data_term_flag)
         return data[start:end].strip()
 
+    # remove unwanted strings from tag data
     def clean_data(self, data):
         tags = filter(None, re.split('[\n\r]', re.sub('RECEIVED_DATA:', '', data)))
         tags = filter(lambda x: ',' in x, tags)
