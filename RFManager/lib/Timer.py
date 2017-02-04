@@ -31,4 +31,4 @@ class Timer:
             self.timestamp_end = self.timestamp_file(self.end_datetime)
             self.timestamp_end_pretty = self.timestamp_pretty(self.end_datetime)
         else:
-            return self.timestamp_end
+            return self.timestamp_end_pretty

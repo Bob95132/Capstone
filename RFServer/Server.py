@@ -50,7 +50,6 @@ class RFServerUI(object):
 
     def get_rf_status(self):
         (code, message) = RFStatusCheck.report_status()
-
         return "<p style=\"color:%s;\">%s</p>" % (self.code_color[code], message)
 
     def main(self):
