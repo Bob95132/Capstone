@@ -49,7 +49,6 @@ class RFServerUI(object):
         subprocess.call('./end_collection.sh')
 
     def get_rf_status(self):
-        print "Get the status"
         (code, message) = RFStatusCheck.report_status()
 
         return "<p style=\"color:%s;\">%s</p>" % (self.code_color[code], message)
