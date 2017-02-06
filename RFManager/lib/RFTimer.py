@@ -4,8 +4,9 @@
 
 import datetime
 
-class Timer:
+class RFTimer:
     def __init__(self):
+        self.started = False
         self.start_datetime = self.capture_start_time()
         self.end_datetime = None
         self.timestamp_start = self.timestamp_file(self.start_datetime)
@@ -14,8 +15,9 @@ class Timer:
         self.timestamp_end_pretty = None
 
     def capture_start_time(self):
-        if self.start_datetime is None:
+        if not self.started:
             return datetime.datetime.now()
+            self.started = True
         else:
             return self.start_datetime
 

@@ -2,14 +2,14 @@
 # Author: Mike G. Abood
 # Capstone Fall 2016
 
-import Timer
+import RFTimer
 from TagStore import *
 from ReaderCom import *
 import signal
 import time
 
 # initialize timer
-timer = Timer.Timer()
+timer = RFTimer.RFTimer()
 
 sig_flag = 0
 
