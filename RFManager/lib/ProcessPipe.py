@@ -37,7 +37,7 @@ class ProcessPipe:
             self.response = self.process.before + self.process.after
             return -1
         else:
-            self.response = self.process.before
+            self.response = self.process.before + self.process.after
             return index
 
     #capture full output stream on timeout
