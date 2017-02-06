@@ -1,5 +1,5 @@
 import ConfigParser
-import logging
+import logging as altlog
 import datetime
 import os
 
@@ -12,7 +12,7 @@ def get_property(keyname, section):
     try:
         return cp.get(section, keyname)
     except ConfigParser.NoOptionError:
-        logging.error( "Option %s not found in configuration file: %s Quitting..." % (keyname, CONFIG_FILENAME))
+        altlog.error( "Option %s not found in configuration file: %s Quitting..." % (keyname, CONFIG_FILENAME))
 
 def read_status_file():
     filename = get_property("RF_STATUS_PATH", "CONFIGS") + get_property("RF_STATUS_FILE", "CONFIGS")
@@ -21,7 +21,7 @@ def read_status_file():
         try:
             fd = open(filename, 'r+')
         except (OSError, IOError) as e:
-            logging.error( 'error reading RF_STATUS file.')
+            altlog.error( 'error reading RF_STATUS file.')
             return -1
 
     return fd
@@ -56,6 +56,6 @@ def report_status():
                 minutes = difference.minute
                 message += 'runtime: %d minutes', minutes
             except:
-                logging.error( 'error calculating time difference')
+                altlog.error( 'error calculating time difference')
 
             return (1, message)

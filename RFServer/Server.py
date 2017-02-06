@@ -3,7 +3,7 @@ import RFStatusCheck
 import os
 import subprocess
 import time
-import logging
+import logging as altlog
 
 ui = PiUi()
 page = ui.new_ui_page(title="RFConnect")
@@ -14,22 +14,22 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 # Sets up logger with the configured log file
 def setup_logger(logfile, verbose, console):
     if verbose:
-        log_level = logging.DEBUG
+        log_level = altlog.DEBUG
     else:
-        log_level = logging.INFO
+        log_level = altlog.INFO
 
-    logging.getLogger('').handlers = []
-    logging.basicConfig(level=log_level,
-                        format='RFID~[%(levelname)s] %(asctime)s, %(message)s',
+    altlog.getLogger('').handlers = []
+    altlog.basicConfig(level=log_level,
+                        format='RFSERV~[%(levelname)s] %(asctime)s, %(message)s',
                         datefmt='%Y-%m-%d-%H:%M:%S',
                         filename=logfile,
                         filemode='w+')
     if console:
-        console = logging.StreamHandler()
-        formatter = logging.Formatter('RFID~[%(levelname)s] %(asctime)s, %(message)s', '%Y-%m-%d-%H:%M:%S')
+        console = altlog.StreamHandler()
+        formatter = altlog.Formatter('RFSERV~[%(levelname)s] %(asctime)s, %(message)s', '%Y-%m-%d-%H:%M:%S')
         console.setFormatter(formatter)
         console.setLevel(log_level)
-        logging.getLogger('').addHandler(console)
+        altlog.getLogger('').addHandler(console)
 
 class RFServerUI(object):
 
@@ -62,16 +62,16 @@ class RFServerUI(object):
             time.sleep(0.5)
 
     def on_start_click(self):
-        logging.info("Start RFManager")
+        altlog.info("Start RFManager")
         subprocess.call('./start_collection.sh')
 
     def on_stop_click(self):
-        logging.info("Stop RFManager")
+        altlog.info("Stop RFManager")
         subprocess.call('./end_collection.sh')
 
     def get_rf_status(self):
         (code, message) = RFStatusCheck.report_status()
-        logging.info('rf_status: %d | %s' % (code, message))
+        altlog.info('rf_status: %d | %s' % (code, message))
         return "<p style=\"color:%s;\">%s</p>" % (self.code_color[code], message)
 
     def main(self):
