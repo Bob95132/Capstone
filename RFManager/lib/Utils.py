@@ -8,7 +8,7 @@ import sys
 import os
 
 CONFIG_FILENAME = 'RFManager/conf/rfid.conf'
-LOG_FILE = 'RFManager/logs/rfid.log'
+LOG_FILE = 'RFManager/log/rfid.log'
 EXIT_SUCCESS = 0
 
 # Gets the value for a given key 'keyname' from the properties file 'filepath'
@@ -73,7 +73,7 @@ def report_success_and_exit(message=None):
     write_status_file('00 %s' % message)
     sys.exit(0)
 
-#create pretty title in logs
+#create pretty title in log
 def log_title(title):
     LINE_WIDTH = int(get_property("LINE_WIDTH", 'CONFIGS'))
 

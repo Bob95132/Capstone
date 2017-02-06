@@ -7,7 +7,7 @@ import logging
 
 ui = PiUi()
 page = ui.new_ui_page(title="RFConnect")
-log_file = 'RFServer/logs/rfserver.log'
+log_file = 'RFServer/log/rfserver.log'
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
