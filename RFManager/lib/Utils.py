@@ -7,8 +7,8 @@ import logging
 import sys
 import os
 
-CONFIG_FILENAME = 'RFManager/rfid.conf'
-LOG_FILE = 'RFManager/rfid.log'
+CONFIG_FILENAME = 'RFManager/conf/rfid.conf'
+LOG_FILE = 'RFManager/logs/rfid.log'
 EXIT_SUCCESS = 0
 
 # Gets the value for a given key 'keyname' from the properties file 'filepath'
@@ -19,7 +19,7 @@ def get_property(keyname, section):
         return cp.get(section, keyname)
     except ConfigParser.NoOptionError:
         logging.error("Option %s not found in configuration file: %s Quitting..." % (keyname, CONFIG_FILENAME))
-        sys.exit(1)
+        report_failed_and_exit("Requested Config not found in file: " + CONFIG_FILENAME)
 
 # Sets up logger with the configured log file
 def setup_logger(logfile, verbose, console):
@@ -41,6 +41,7 @@ def setup_logger(logfile, verbose, console):
         console.setLevel(log_level)
         logging.getLogger('').addHandler(console)
 
+#check if reporting directory exists
 def report_dir_exists():
     return os.path.exists(get_property("RFSCAN_PATH", "CONFIGS"))
 
@@ -55,15 +56,22 @@ def check_files():
             os.makedirs(scan_data_dir)
         except OSError:
             logging.error('Unable to create reporting directory. Check location of RFSCAN_PATH')
-            report_failed_and_exit()
+            report_failed_and_exit('Unable to create reporting directory. Check location of RFSCAN_PATH')
 
 # Reports setup failure and exits the program with error status
 def report_failed_and_exit(message=None):
-    if message:
-        logging.error('FAILED: %s' % message)
-
-    logging.error("RF Manager EXITING")
+    if not message:
+        message = 'Data collection terminated by error.'
+    logging.error('FAILED: %s' % message)
+    write_status_file('01 %s' % message)
     sys.exit(1)
+
+def report_success_and_exit(message=None):
+    if not message:
+        message = 'Data collection finished.'
+    logging.info('SUCCESS: %s' % message)
+    write_status_file('00 %s' % message)
+    sys.exit(0)
 
 #create pretty title in logs
 def log_title(title):
@@ -80,6 +88,25 @@ def log_title(title):
         border += '-'
     border += '|'
     logging.info(border)
+
+# Create, or append a line to the RF_STATUS file
+def write_status_file(append_str, init=False):
+    status_dir = get_property("RF_STATUS_PATH", "CONFIGS")
+    status_file = get_property("RF_STATUS_FILE", "CONFIGS")
+
+    try:
+        if init:
+            fd = open(status_dir + status_file, 'a+')
+        else:
+            fd = open(status_dir + status_file, 'w')
+
+        if append_str:
+            fd.write(append_str + '\n')
+
+        fd.close()
+
+    except (OSError, IOError) as e:
+        logging.error('error writing RF_STATUS file.')
 
 
 

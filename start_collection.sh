@@ -8,7 +8,7 @@ then
     echo "RFManager already running."
     exit 1
 else
-    python ./RFManager/RFManager.py & 
+    python ./RFManager/lib/RFManager.py &
     PID=$!
     echo $PID
     echo $PID > RF_PID

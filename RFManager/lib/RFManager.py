@@ -2,10 +2,14 @@
 # Author: Mike G. Abood
 # Capstone Fall 2016
 
+import Timer
 from TagStore import *
 from ReaderCom import *
 import signal
 import time
+
+# initialize timer
+timer = Timer.Timer()
 
 sig_flag = 0
 
@@ -21,7 +25,7 @@ def finish_and_dump(rcom, tstore, dump=1):
     rcom.rfcom_terminate()
 
     logging.info('RF Manager EXITING')
-    sys.exit(0)
+    report_success_and_exit('%s - Data collection finished.' % timer.capture_stop_time())
 
 def handle_signal(signum, stack):
     global sig_flag
@@ -41,20 +45,22 @@ def main():
     setup_logger(LOG_FILE, VERBOSE_lOGS, CONSOLE_LOGS)
     log_title('RFID Manager')
 
-    #initialize RFCom
-    rcom = ReaderCom()
-    logging.info('%s response: %s' % (rcom.rfcom_name, rcom.reader.response.strip('\n')))
+    #create tag store
+    tstore = TagStore(timer.timestamp_start)
 
+    #initialize RFCom
+    rcom = ReaderCom(timer.timestamp_start)
     rcom.setup_reader()
     rcom.config_reader()
 
-    tstore = TagStore()
     fwrite_counter = 0
     global sig_flag
 
     signal.signal(signal.SIGHUP, handle_signal)
     signal.signal(signal.SIGINT, handle_signal)
     signal.signal(signal.SIGTERM, handle_signal)
+
+    write_status_file('10 %s' % timer.timestamp_start_pretty, init=True)
 
     try:
         while report_dir_exists() and not sig_flag:
