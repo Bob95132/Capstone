@@ -12,7 +12,7 @@ def get_property(keyname, section):
     try:
         return cp.get(section, keyname)
     except ConfigParser.NoOptionError:
-        print "Option %s not found in configuration file: %s Quitting..." % (keyname, CONFIG_FILENAME)
+        logging.error( "Option %s not found in configuration file: %s Quitting..." % (keyname, CONFIG_FILENAME))
 
 def read_status_file():
     filename = get_property("RF_STATUS_PATH", "CONFIGS") + get_property("RF_STATUS_FILE", "CONFIGS")
@@ -21,7 +21,7 @@ def read_status_file():
         try:
             fd = open(filename, 'r+')
         except (OSError, IOError) as e:
-            print 'error reading RF_STATUS file.'
+            logging.error( 'error reading RF_STATUS file.')
             return -1
 
     return fd
@@ -56,6 +56,6 @@ def report_status():
                 minutes = difference.minute
                 message += 'runtime: %d minutes', minutes
             except:
-                print 'error calculating time difference'
+                logging.error( 'error calculating time difference')
 
             return (1, message)
