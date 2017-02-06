@@ -1,9 +1,11 @@
-from piui import PiUi
-import RFStatusCheck
+import logging
 import os
 import subprocess
 import time
-import logging
+
+from piui import PiUi
+
+import RFStatusCheck
 
 ui = PiUi()
 page = ui.new_ui_page(title="RFConnect")
@@ -34,6 +36,7 @@ def setup_logger(logfile, verbose, console):
 class RFServerUI(object):
 
     def __init__(self):
+        self.page = None
         self.title = None
         self.txt = None
         self.img = None
@@ -68,7 +71,6 @@ class RFServerUI(object):
         subprocess.call('./start_collection.sh', shell=True)
         time.sleep(1)
         self.txt.set_text('<br>')
-
 
     def on_stop_click(self):
         logging.info("Stop RFManager")
