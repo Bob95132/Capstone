@@ -8,7 +8,7 @@ then
     echo "PIUI Server already running."
     exit 1
 else
-    python ./RFServer/Server.py &>out &
+    python ./RFServer/Server.py &>/dev/null &
     PID=$!
     echo $PID
     echo $PID > SERV_PID
