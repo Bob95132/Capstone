@@ -52,7 +52,7 @@ class RFServerUI(object):
         space = self.page.add_textbox("<br>", "p")
         start = self.page.add_button("Start Data Collection", self.on_start_click)
         stop = self.page.add_button("End Data Collection", self.on_stop_click)
-        self.txt = self.page.add_button("<br>", "p")
+        self.txt = self.page.add_textbox("<br>", "p")
         space = self.page.add_textbox("<br><br>", "p")
         status_box = self.page.add_textbox("RFID Data Collection Status:", "h2")
         status = self.page.add_textbox("<p>\n</p>", "p")
@@ -60,18 +60,21 @@ class RFServerUI(object):
         time.sleep(1)
         while True:
             status.set_text(self.get_rf_status())
-            time.sleep(0.5)
+            time.sleep(1)
 
     def on_start_click(self):
         logging.info("Start RFManager")
         self.txt.set_text('<p style=\"color:green;\" font-style: italic;>Starting Data Collection...</p>')
         subprocess.call('./start_collection.sh', shell=True)
+        time.sleep(1)
         self.txt.set_text('<br>')
+
 
     def on_stop_click(self):
         logging.info("Stop RFManager")
         self.txt.set_text('<p style=\"color:blue;\" font-style: italic;>Ending Data Collection...</p>')
         subprocess.call('./end_collection.sh', shell=True)
+        time.sleep(1)
         self.txt.set_text('<br>')
 
     def get_rf_status(self):
