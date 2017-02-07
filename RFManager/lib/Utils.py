@@ -96,9 +96,9 @@ def write_status_file(append_str, init=False):
 
     try:
         if init:
-            fd = open(status_dir + status_file, 'a+')
-        else:
             fd = open(status_dir + status_file, 'w')
+        else:
+            fd = open(status_dir + status_file, 'a+')
 
         if append_str:
             fd.write(append_str + '\n')

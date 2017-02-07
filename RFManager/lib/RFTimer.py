@@ -32,5 +32,6 @@ class RFTimer:
             self.end_datetime = datetime.datetime.now()
             self.timestamp_end = self.timestamp_file(self.end_datetime)
             self.timestamp_end_pretty = self.timestamp_pretty(self.end_datetime)
+            return self.timestamp_end_pretty
         else:
             return self.timestamp_end_pretty

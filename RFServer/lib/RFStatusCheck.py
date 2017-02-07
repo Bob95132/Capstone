@@ -51,7 +51,7 @@ def report_status():
             message += 'started: %s\n' % start_time
 
             try:
-                strt = datetime.datetime.strptime(start_time, ':%Y-%m-%d_%H.%M.%S}')
+                strt = datetime.datetime.strptime(start_time, '{%Y-%m-%d_%H.%M.%S}')
                 difference = datetime.datetime.now() - strt
                 minutes = difference.minute
                 message += 'runtime: %d minutes', minutes
