@@ -2,9 +2,10 @@
 # Author: Mike G. Abood
 # Capstone Fall 2016
 
+import RFStatus
 import collections
 import datetime
-from Utils import *
+from Utils import get_property
 import json
 import xlsxwriter
 
@@ -24,7 +25,7 @@ class TagStore:
         self.size = len(self.tag_map)
 
     def file_dump_json(self):
-        fn = self.dirpath + '/'
+        fn = self.dirpath
         fn += self.filename + self.file_time
         fn += '.json'
 
@@ -41,8 +42,10 @@ class TagStore:
             outfile.write(json.dumps(json_data, indent=4, sort_keys=True))
             outfile.close()
 
+        RFStatus.RFStatus().file_write('Tags written to JSON file', fn)
+
     def file_dump_xls(self):
-        fn = self.dirpath + '/'
+        fn = self.dirpath
         fn += self.filename + self.file_time
         fn += '.xlsx'
 
@@ -80,6 +83,8 @@ class TagStore:
             row += 1
 
         workbook.close()
+
+        RFStatus.RFStatus().file_write('Tags written to XLSX file', fn)
 
     def get_contents_str(self):
         contents = 'TagStore: {'

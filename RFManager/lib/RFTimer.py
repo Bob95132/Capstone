@@ -25,7 +25,7 @@ class RFTimer:
         return '{:%Y-%m-%d_%H.%M.%S}'.format(date)
 
     def timestamp_pretty(self, date):
-        return '{:%Y-%m-%d %H:%M:%S}'.format(date)
+        return '{:%m-%d-%Y %H:%M:%S}'.format(date)
 
     def capture_stop_time(self):
         if self.end_datetime is None:

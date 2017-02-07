@@ -2,6 +2,7 @@
 # Author: Mike G. Abood
 # Capstone Fall 2016
 
+import RFStatus
 import ConfigParser
 import logging
 import sys
@@ -63,14 +64,14 @@ def report_failed_and_exit(message=None):
     if not message:
         message = 'Data collection terminated by error.'
     logging.error('FAILED: %s' % message)
-    write_status_file('01 %s' % message)
+    RFStatus.RFStatus().end_failure(message)
     sys.exit(1)
 
-def report_success_and_exit(message=None):
+def report_success_and_exit(timestamp, message=None):
     if not message:
         message = 'Data collection finished.'
     logging.info('SUCCESS: %s' % message)
-    write_status_file('00 %s' % message)
+    RFStatus.RFStatus().end_success(timestamp, message)
     sys.exit(0)
 
 #create pretty title in log
@@ -88,27 +89,6 @@ def log_title(title):
         border += '-'
     border += '|'
     logging.info(border)
-
-# Create, or append a line to the RF_STATUS file
-def write_status_file(append_str, init=False):
-    status_dir = get_property("RF_STATUS_PATH", "CONFIGS")
-    status_file = get_property("RF_STATUS_FILE", "CONFIGS")
-
-    try:
-        if init:
-            fd = open(status_dir + status_file, 'w')
-        else:
-            fd = open(status_dir + status_file, 'a+')
-
-        if append_str:
-            fd.write(append_str + '\n')
-
-        fd.close()
-
-    except (OSError, IOError) as e:
-        logging.error('error writing RF_STATUS file.')
-
-
 
 
 

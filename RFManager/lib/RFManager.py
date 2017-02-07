@@ -3,6 +3,7 @@
 # Capstone Fall 2016
 
 import RFTimer
+import RFStatus
 from TagStore import *
 from ReaderCom import *
 import signal
@@ -25,7 +26,7 @@ def finish_and_dump(rcom, tstore, dump=1):
     rcom.rfcom_terminate()
 
     logging.info('RF Manager EXITING')
-    report_success_and_exit('%s - Data collection finished.' % timer.capture_stop_time())
+    report_success_and_exit(timer.capture_stop_time(), 'Data collection finished.')
 
 def handle_signal(signum, stack):
     global sig_flag
@@ -60,7 +61,7 @@ def main():
     signal.signal(signal.SIGINT, handle_signal)
     signal.signal(signal.SIGTERM, handle_signal)
 
-    write_status_file('10 %s' % timer.timestamp_start_pretty, init=True)
+    RFStatus.RFStatus().start_status(timer.timestamp_start_pretty, 'Data collection started.')
 
     try:
         while report_dir_exists() and not sig_flag:
