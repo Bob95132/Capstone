@@ -25,8 +25,8 @@ class TagStore:
         self.size = len(self.tag_map)
 
     def file_dump_json(self):
-        fn = self.dirpath
-        fn += self.filename + self.file_time
+        dr = self.dirpath
+        fn = self.filename + self.file_time
         fn += '.json'
 
         json_data = {
@@ -38,15 +38,15 @@ class TagStore:
                 'data':self.tag_map
             }
         }
-        with open(fn, 'w+') as outfile:
+        with open(dr + fn, 'w+') as outfile:
             outfile.write(json.dumps(json_data, indent=4, sort_keys=True))
             outfile.close()
 
         RFStatus.RFStatus().file_write('Tags written to JSON file', fn)
 
     def file_dump_xls(self):
-        fn = self.dirpath
-        fn += self.filename + self.file_time
+        dr = self.dirpath
+        fn = self.filename + self.file_time
         fn += '.xlsx'
 
         title = 'RFID Tag Collection Report'
@@ -54,7 +54,7 @@ class TagStore:
         row = 0
         col = 0
 
-        workbook = xlsxwriter.Workbook(fn)
+        workbook = xlsxwriter.Workbook(dr + fn)
         worksheet = workbook.add_worksheet()
 
         worksheet.set_column(0, 0, len(title))
