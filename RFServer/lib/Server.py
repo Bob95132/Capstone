@@ -191,7 +191,7 @@ class RFServerUI(object):
             json_file = self.rfstatus.read_file_name('.json')
             logging.info("json file: %s" % json_file)
             json_data = self.rfstatus.read_tag_file(json_file)
-            logging.log ("json: %s" % json_data)
+            logging.info ("json: %s" % json_data)
             tag_map = json.loads(json_data)['RF Tags Identified']['data']
 
             table += '<tr><th>Tag ID</th><th>Time Last Seen</th></tr>'
