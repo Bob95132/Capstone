@@ -140,11 +140,11 @@ class RFServerUI(object):
                 text += '<br><p>RFID Tags Captured:</p>'
                 text += self.build_tag_table()
 
-            if self.rfstatus.has_written_file('.xlsx'):
-                self.download_title.set_text('Inventory Scan Report')
-                dl_path = self.resolve_dl_path('.xlsx')
-                dl_element = '<a href=\"%s\" download>Click to download</a>' % dl_path
-                self.download_link.set_text(dl_element)
+            #if self.rfstatus.has_written_file('.xlsx'):
+            #   self.download_title.set_text('Inventory Scan Report')
+            #    dl_path = self.resolve_dl_path('.xlsx')
+            #    dl_element = '<a href=\"%s\" download>Click to download</a>' % dl_path
+            #    self.download_link.set_text(dl_element)
 
         elif status is 4:
         # display error
@@ -189,7 +189,9 @@ class RFServerUI(object):
         table = '<table style=\"width:100%\" border="1">'
         try:
             json_file = self.rfstatus.read_file_name('.json')
+            logging.info("json file: %s" % json_file)
             json_data = self.rfstatus.read_tag_file(json_file)
+            logging.log ("json: %s" % json_data)
             tag_map = json.loads(json_data)['RF Tags Identified']['data']
 
             table += '<tr><th>Tag ID</th><th>Time Last Seen</th></tr>'
