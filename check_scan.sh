@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python RFManager/ScanData.py
+python RFManager/lib/ScanData.py
