@@ -139,7 +139,7 @@ class RFStatusCheck():
         try:
             fd = open(self.get_scan_data_path() + filename, 'r+')
             logging.info("file opened: %s" % filename)
-            return ''.join(fd.readlines())
+            return fd.readlines()
         except:
             return None
 
