@@ -74,6 +74,7 @@ class RFStatusCheck():
         if fd > 0:
             lines = fd.readlines()
             if lines[0][0] is self.a_codes['RUNNING'] and lines[0][1] is self.b_codes['SUCCESS']:
+                logging.info('Init line rf_status: %s' % lines[0])
                 time = lines[0].split('|')[1]
             fd.close()
         return time
