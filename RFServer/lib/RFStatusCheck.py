@@ -111,7 +111,7 @@ class RFStatusCheck():
             lines = fd.readlines()
             for line in lines:
                 if line[0] is self.a_codes['FWRITE']:
-                    name = line.split('|')[2].strip(' ', '\n')
+                    name = line.split('|')[2].strip()
                     if extension in name:
                         fw = True
             fd.close()
