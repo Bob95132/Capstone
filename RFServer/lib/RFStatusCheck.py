@@ -74,8 +74,18 @@ class RFStatusCheck():
         if fd > 0:
             lines = fd.readlines()
             if lines[0][0] is self.a_codes['RUNNING'] and lines[0][1] is self.b_codes['SUCCESS']:
-                logging.info('Init line rf_status: %s' % lines[0])
                 time = lines[0].split('|')[1]
+            fd.close()
+        return time
+
+    def read_end_time(self):
+        fd = self.read_status_file()
+        time = '-'
+        if fd > 0:
+            lines = fd.readlines()
+            last_line = lines[len(lines) - 1]
+            if last_line[0] is self.a_codes['STOPPED'] and last_line[1] is self.b_codes['SUCCESS']:
+                time = last_line.split('|')[1]
             fd.close()
         return time
 
@@ -83,6 +93,12 @@ class RFStatusCheck():
         start = datetime.datetime.strptime(self.read_start_time(), '%m-%d-%Y %H:%M:%S')
         now = datetime.datetime.now()
         delta = datetime.timedelta(seconds=(now-start).total_seconds()).total_seconds()
+        return (delta / 60, delta % 60)
+
+    def calculate_final_runtime(self):
+        start = datetime.datetime.strptime(self.read_start_time(), '%m-%d-%Y %H:%M:%S')
+        finish = datetime.datetime.strptime(self.read_end_time(), '%m-%d-%Y %H:%M:%S')
+        delta = datetime.timedelta(seconds=(finish - start).total_seconds()).total_seconds()
         return (delta / 60, delta % 60)
 
 

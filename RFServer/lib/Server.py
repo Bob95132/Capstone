@@ -81,7 +81,7 @@ class RFServerUI(object):
         self.download_link = self.page.add_textbox("<a></a>", "a")
 
         self.page.add_textbox("RFID Data Collection Status:", "h2")
-        self.status_title = self.page.add_textbox(self.status_states[0], "p")
+        self.status_title = self.page.add_textbox("<br>", "p")
         self.status_txt = self.page.add_textbox("<br>", "p")
         self.status_state = 0
         self.action_state = 0
@@ -134,7 +134,7 @@ class RFServerUI(object):
         elif status is 3:
         # retrieve output file
             text = '<p>Started: %s</p>' % self.rfstatus.read_start_time()
-            text += '<p>Runtime: %d minutes, %d seconds</p>' % self.rfstatus.calculate_runtime()
+            text += '<p>Runtime: %d minutes, %d seconds</p>' % self.rfstatus.calculate_final_runtime()
             if self.rfstatus.has_written_file('.json'):
                 # print tag progress
                 text += '<br><p>RFID Tags Captured:</p>'

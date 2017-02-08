@@ -1,6 +1,16 @@
-from Utils import get_property
+import ConfigParser
 import logging
 
+CONFIG_FILENAME = 'RFManager/conf/rfid.conf'
+
+# Gets the value for a given key 'keyname' from the properties file 'filepath'
+def get_property(keyname, section):
+    cp = ConfigParser.ConfigParser()
+    cp.read(CONFIG_FILENAME)
+    try:
+        return cp.get(section, keyname)
+    except ConfigParser.NoOptionError:
+        logging.error("Option %s not found in configuration file: %s Quitting..." % (keyname, CONFIG_FILENAME))
 
 class RFStatus():
     def __init__(self):
