@@ -111,8 +111,8 @@ class RFStatusCheck():
             lines = fd.readlines()
             for line in lines:
                 if line[0] is self.a_codes['FWRITE']:
-                    name = line.split('|')[2].strip()
-                    if name[len(name) - len(extension):] is extension:
+                    name = line.split('|')[2].strip(' ', '\n')
+                    if extension in name:
                         fw = True
             fd.close()
         return fw
@@ -127,7 +127,7 @@ class RFStatusCheck():
             for line in lines:
                 if line[0] is self.a_codes['FWRITE']:
                     name = line.split('|')[2].strip()
-                    if name[len(name) - len(extension):] is extension:
+                    if extension in name:
                         filename = name
             fd.close()
         return filename
@@ -138,7 +138,8 @@ class RFStatusCheck():
     def read_tag_file(self, filename):
         try:
             fd = open(self.get_scan_data_path() + filename, 'r+')
-            return fd.read()
+            logging.info("file opened: %s" % filename)
+            return ''.join(fd.readlines())
         except:
             return None
 

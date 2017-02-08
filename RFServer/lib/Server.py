@@ -81,7 +81,7 @@ class RFServerUI(object):
         self.download_link = self.page.add_textbox("<a></a>", "a")
 
         self.page.add_textbox("RFID Data Collection Status:", "h2")
-        self.status_title = self.page.add_textbox("<br>", "p")
+        self.status_title = self.page.add_textbox("<p>&nbsp;<p>", "p")
         self.status_txt = self.page.add_textbox("<br>", "p")
         self.status_state = 0
         self.action_state = 0
