@@ -82,7 +82,7 @@ class RFStatusCheck():
     def calculate_runtime(self):
         start = datetime.datetime.strptime(self.read_start_time(), '%m-%d-%Y %H:%M:%S')
         now = datetime.datetime.now()
-        delta = datetime.timedelta(seconds=(now-start).total_seconds())
+        delta = datetime.timedelta(seconds=(now-start).total_seconds()).total_seconds()
         return (delta / 60, delta % 60)
 
 
