@@ -6,4 +6,5 @@ read -r PID <SERV_PID
 
 if [ $RUNNING -eq 0 ]; then
    kill -s SIGKILL $PID
+   ./end_collection.sh
 fi
