@@ -85,10 +85,10 @@ class RFServerUI(object):
         self.status_txt = self.page.add_textbox("<br>", "p")
         self.status_state = 0
         self.action_state = 0
-        time.sleep(1)
+        time.sleep(2)
         while True:
-            self.refresh_state()
             time.sleep(1)
+            self.refresh_state()
 
     def refresh_action_state(self):
         action = self.action_state
@@ -201,7 +201,7 @@ class RFServerUI(object):
             table += '</table>'
             return table
         except:
-            return '<p>unable to create tags table</p>'
+            return '<p style=\"color:SlateGray;font-style:italic;\">loading tags table...</p>'
 
     def resolve_dl_path(self, extension):
         filename = self.rfstatus.read_file_name(extension)
