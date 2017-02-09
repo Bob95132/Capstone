@@ -9,6 +9,7 @@ then
     exit 1
 else
     rm -rf RFManager/bin/RF_STATUS
+    echo "Starting RFServer..."
     python ./RFServer/lib/Server.py &>./RFServer/log/out &
     PID=$!
     echo $PID
