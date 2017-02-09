@@ -73,7 +73,6 @@ class RFServerUI(object):
         self.title = self.page.add_textbox("RFID Inventory Scan", "h1")
         self.page.add_textbox("<br>", "p")
         start = self.page.add_button("Start Data Collection", self.on_start_click)
-        self.page.add_textbox(self.action_states[0], "p")
         stop = self.page.add_button("End Data Collection", self.on_stop_click)
         self.action_txt = self.page.add_textbox("<br>", "p")
         self.page.add_textbox("<br>", "p")
@@ -81,6 +80,7 @@ class RFServerUI(object):
         self.download_link = self.page.add_textbox("<a></a>", "a")
 
         self.page.add_textbox("RFID Data Collection Status:", "h2")
+        self.page.add_textbox("<br>", "p")
         self.status_title = self.page.add_textbox("<p>&nbsp;<p>", "p")
         self.status_txt = self.page.add_textbox("<br>", "p")
         self.status_state = 0
@@ -194,7 +194,8 @@ class RFServerUI(object):
             logging.info ("json: %s" % json_data)
             tag_map = json.loads(json_data)['RF Tags Identified']['data']
 
-            table += '<tr><th>Tag ID</th><th>Time Last Seen</th></tr>'
+            table += '<tr><th style=\"text-align:left;\">Tag ID</th>'
+            table += '<th style=\"text-align:left;\">Time Last Seen</th></tr>'
             for tag in tag_map:
                 table += '<tr><td>' + str(tag) + '</td><td>' + str(tag_map[tag]) + '</td></tr>'
             table += '</table>'
