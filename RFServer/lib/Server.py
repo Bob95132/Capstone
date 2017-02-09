@@ -85,6 +85,7 @@ class RFServerUI(object):
         self.status_txt = self.page.add_textbox("<br>", "p")
         self.status_state = 0
         self.action_state = 0
+        self.refresh_state()
         time.sleep(2)
         while True:
             time.sleep(1)
