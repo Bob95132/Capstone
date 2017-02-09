@@ -1,5 +1,6 @@
 #!/bin/sh
 
+echo "Configuring Pi for internet access"
 sudo ifdown wlan0
 sudo cp ./InternetConfiguration /etc/network/interfaces
 sudo systemctl daemon-reload
