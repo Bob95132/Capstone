@@ -8,6 +8,7 @@ then
     echo "PIUI Server already running."
     exit 1
 else
+    rm -rf RFManager/bin/RF_STATUS
     python ./RFServer/lib/Server.py &>./RFServer/log/out &
     PID=$!
     echo $PID
