@@ -156,6 +156,7 @@ class RFServerUI(object):
 
     def on_start_click(self):
         logging.info('Start button clicked')
+        self.refresh_state()
 
         #if inventory scan already running
         if self.status_state is 2:
@@ -169,6 +170,7 @@ class RFServerUI(object):
 
     def on_stop_click(self):
         logging.info('Stop button clicked')
+        self.refresh_state()
 
         # if inventory scan not running
         if self.status_state is not 2:
