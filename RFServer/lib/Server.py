@@ -79,14 +79,16 @@ class RFServerUI(object):
         self.page.add_textbox("<br>", "p")
         self.download_title = self.page.add_textbox("<p></p>", "h2")
         self.download_link = self.page.add_textbox("<a></a>", "a")
-        refresh = self.page.add_button("Refresh Scan Status", self.on_refresh_click)
+
         self.page.add_textbox("Inventory Scan Status:", "h2")
+        refresh = self.page.add_button("Refresh Scan Status", self.on_refresh_click)
         self.page.add_textbox("<br>", "p")
         self.status_title = self.page.add_textbox("<p></p>", "p")
         self.status_txt = self.page.add_textbox("<br>", "p")
         self.status_state = 0
         self.action_state = 0
-        self.refresh_state()
+        while self.refresh_state() is 0:
+            status = self.refresh_state()
 
     def refresh_action_state(self):
         action = self.action_state
@@ -171,7 +173,7 @@ class RFServerUI(object):
             logging.info("executing: \'./start_collection.sh\'")
             subprocess.call('./start_collection.sh', shell=True)
         status = self.refresh_state()
-        while status is 0:
+        while status is not 2:
             status = self.refresh_state()
 
     def on_stop_click(self):
@@ -187,7 +189,7 @@ class RFServerUI(object):
             logging.info("executing: \'./end_collection.sh\'")
             subprocess.call('./end_collection.sh', shell=True)
         status = self.refresh_state()
-        while status is 0:
+        while status is 0 or status is 2:
             status = self.refresh_state()
 
 
