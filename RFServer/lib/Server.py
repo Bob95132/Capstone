@@ -70,26 +70,24 @@ class RFServerUI(object):
 
     def main_menu(self):
         self.page = self.ui.new_ui_page(title="RFConnect")
-        self.title = self.page.add_textbox("RFID Inventory Scan", "h1")
+        self.title = self.page.add_textbox("Drone RFID Inventory Controller", "h1")
         self.page.add_textbox("<br>", "p")
-        start = self.page.add_button("Start Data Collection", self.on_start_click)
+        start = self.page.add_button("Start Inventory Scan", self.on_start_click)
         stop = self.page.add_button("End Data Collection", self.on_stop_click)
         self.action_txt = self.page.add_textbox("<br>", "p")
         self.page.add_textbox("<br>", "p")
         self.download_title = self.page.add_textbox("<p></p>", "h2")
         self.download_link = self.page.add_textbox("<a></a>", "a")
 
-        self.page.add_textbox("RFID Data Collection Status:", "h2")
+        self.page.add_button("Refresh Scan Status", self.on_refresh_click())
+        self.page.add_textbox("Inventory Scan Status:", "h2")
         self.page.add_textbox("<br>", "p")
         self.status_title = self.page.add_textbox("<p>&nbsp;<p>", "p")
         self.status_txt = self.page.add_textbox("<br>", "p")
+        self.status_txt.set_text(self.status_states[0])
         self.status_state = 0
         self.action_state = 0
         self.refresh_state()
-        time.sleep(2)
-        while True:
-            time.sleep(1)
-            self.refresh_state()
 
     def refresh_action_state(self):
         action = self.action_state
@@ -153,6 +151,10 @@ class RFServerUI(object):
 
         self.refresh_action_state()
         self.status_txt.set_text(text)
+
+    def on_refresh_click(self):
+        self.status_txt.set_text(self.status_states[0])
+        self.refresh_state()
 
     def on_start_click(self):
         logging.info('Start button clicked')

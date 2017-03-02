@@ -36,19 +36,21 @@ class RFStatusCheck():
         }
 
     def read_status_file(self):
-        fd = -1
         if os.path.exists(self.filename):
             try:
-                fd = open(self.filename, 'r+')
+                fd = open(self.filename, 'r')
             except (OSError, IOError) as e:
                 logging.error( 'error reading RF_STATUS file.')
-                return -1
-
+                return 0
+        else:
+            fd = -1
         return fd
 
     def check_rf_state(self):
         fd = self.read_status_file()
         if fd is -1:
+            state = 0
+        elif fd is 0:
             state = 1
         else:
             lines = fd.readlines()
