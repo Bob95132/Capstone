@@ -36,7 +36,7 @@ class RFStatusCheck():
         }
 
     def read_status_file(self):
-        if os.path.exists(self.filename):
+        if os.path.isfile(self.filename):
             try:
                 fd = open(self.filename, 'r')
             except (OSError, IOError) as e:
