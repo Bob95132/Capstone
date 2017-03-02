@@ -41,6 +41,7 @@ class RFServerUI(object):
         self.title = None
         self.txt = None
         self.status_head = None
+        self.status_title = None
         self.status_txt = None
         self.action_txt = None
         self.download_title = None
@@ -70,7 +71,7 @@ class RFServerUI(object):
 
     def main_menu(self):
         self.page = self.ui.new_ui_page(title="RFConnect")
-        self.title = self.page.add_textbox("Drone RFID Inventory Controller", "h1")
+        self.title = self.page.add_textbox("RFID Inventory Controller", "h1")
         self.page.add_textbox("<br>", "p")
         start = self.page.add_button("Start Inventory Scan", self.on_start_click)
         stop = self.page.add_button("End Data Collection", self.on_stop_click)
@@ -78,11 +79,10 @@ class RFServerUI(object):
         self.page.add_textbox("<br>", "p")
         self.download_title = self.page.add_textbox("<p></p>", "h2")
         self.download_link = self.page.add_textbox("<a></a>", "a")
-
         refresh = self.page.add_button("Refresh Scan Status", self.on_refresh_click)
         self.page.add_textbox("Inventory Scan Status:", "h2")
         self.page.add_textbox("<br>", "p")
-        self.status_title = self.page.add_textbox("<p>&nbsp;<p>", "p")
+        self.status_title = self.page.add_textbox(self.status_states[0], "p")
         self.status_txt = self.page.add_textbox("<br>", "p")
         self.status_state = 0
         self.action_state = 0
