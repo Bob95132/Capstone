@@ -82,7 +82,7 @@ class RFServerUI(object):
         refresh = self.page.add_button("Refresh Scan Status", self.on_refresh_click)
         self.page.add_textbox("Inventory Scan Status:", "h2")
         self.page.add_textbox("<br>", "p")
-        self.status_title = self.page.add_textbox(self.status_states[0], "p")
+        self.status_title = self.page.add_textbox("<p>&nbsp;</p>", "p")
         self.status_txt = self.page.add_textbox("<br>", "p")
         self.status_state = 0
         self.action_state = 0
@@ -110,7 +110,7 @@ class RFServerUI(object):
         self.action_txt.set_text(self.action_states[self.action_state])
 
     def refresh_state(self):
-        status = self.update_status_state()
+        status = self.check_state_until_resolved()
         self.status_title.set_text(self.status_states[self.status_state])
         text = '<br>'
 
@@ -150,6 +150,12 @@ class RFServerUI(object):
 
         self.refresh_action_state()
         self.status_txt.set_text(text)
+
+    def check_state_until_resolved(self):
+        status = self.update_status_state()
+        while status is 0:
+            status = self.update_status_state()
+        return status
 
     def on_refresh_click(self):
         self.status_title.set_text(self.status_states[0])
