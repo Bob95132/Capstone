@@ -82,7 +82,7 @@ class RFServerUI(object):
         refresh = self.page.add_button("Refresh Scan Status", self.on_refresh_click)
         self.page.add_textbox("Inventory Scan Status:", "h2")
         self.page.add_textbox("<br>", "p")
-        self.status_title = self.page.add_textbox("<p>&nbsp;</p>", "p")
+        self.status_title = self.page.add_textbox("<p></p>", "p")
         self.status_txt = self.page.add_textbox("<br>", "p")
         self.status_state = 0
         self.action_state = 0
@@ -110,7 +110,7 @@ class RFServerUI(object):
         self.action_txt.set_text(self.action_states[self.action_state])
 
     def refresh_state(self):
-        status = self.check_state_until_resolved()
+        status = self.update_status_state()
         self.status_title.set_text(self.status_states[self.status_state])
         text = '<br>'
 
@@ -150,16 +150,13 @@ class RFServerUI(object):
 
         self.refresh_action_state()
         self.status_txt.set_text(text)
-
-    def check_state_until_resolved(self):
-        status = self.update_status_state()
-        while status is 0:
-            status = self.update_status_state()
         return status
 
     def on_refresh_click(self):
         self.status_title.set_text(self.status_states[0])
-        self.refresh_state()
+        status = self.refresh_state()
+        while status is 0:
+            status = self.refresh_state()
 
     def on_start_click(self):
         logging.info('Start button clicked')
@@ -173,7 +170,9 @@ class RFServerUI(object):
             self.refresh_action_state()
             logging.info("executing: \'./start_collection.sh\'")
             subprocess.call('./start_collection.sh', shell=True)
-        self.refresh_state()
+        status = self.refresh_state()
+        while status is 0:
+            status = self.refresh_state()
 
     def on_stop_click(self):
         logging.info('Stop button clicked')
@@ -187,7 +186,9 @@ class RFServerUI(object):
             self.refresh_action_state()
             logging.info("executing: \'./end_collection.sh\'")
             subprocess.call('./end_collection.sh', shell=True)
-        self.refresh_state()
+        status = self.refresh_state()
+        while status is 0:
+            status = self.refresh_state()
 
 
     def update_status_state(self):
