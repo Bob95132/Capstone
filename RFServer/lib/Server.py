@@ -79,7 +79,7 @@ class RFServerUI(object):
         self.download_title = self.page.add_textbox("<p></p>", "h2")
         self.download_link = self.page.add_textbox("<a></a>", "a")
 
-        self.page.add_button("Refresh Scan Status", self.on_refresh_click())
+        self.page.add_button("Refresh Scan Status", self.on_refresh_click)
         self.page.add_textbox("Inventory Scan Status:", "h2")
         self.page.add_textbox("<br>", "p")
         self.status_title = self.page.add_textbox("<p>&nbsp;<p>", "p")
