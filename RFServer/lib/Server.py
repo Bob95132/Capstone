@@ -170,15 +170,16 @@ class RFServerUI(object):
         #if inventory scan already running
         if self.status_state is 2:
             self.action_state = 2
+            self.refresh_state()
         else:
             self.action_state = 1
             self.refresh_action_state()
             logging.info("executing: \'./start_collection.sh\'")
             subprocess.call('./start_collection.sh', shell=True)
-        status = self.refresh_state()
-        while status is not 2:
-            time.sleep(0.5)
             status = self.refresh_state()
+            while status is not 2:
+                time.sleep(0.5)
+                status = self.refresh_state()
 
     def on_stop_click(self):
         logging.info('Stop button clicked')
@@ -187,15 +188,16 @@ class RFServerUI(object):
         # if inventory scan not running
         if self.status_state is not 2:
             self.action_state = 4
+            self.refresh_state()
         else:
             self.action_state = 3
             self.refresh_action_state()
             logging.info("executing: \'./end_collection.sh\'")
             subprocess.call('./end_collection.sh', shell=True)
-        status = self.refresh_state()
-        while status is 0 or status is 2:
-            time.sleep(0.5)
             status = self.refresh_state()
+            while status is 0 or status is 2:
+                time.sleep(0.5)
+                status = self.refresh_state()
 
 
     def update_status_state(self):
