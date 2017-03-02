@@ -89,6 +89,7 @@ class RFServerUI(object):
         self.action_state = 0
         status = self.refresh_state()
         while status is 0:
+            time.sleep(0.5)
             status = self.refresh_state()
 
     def refresh_action_state(self):
@@ -159,6 +160,7 @@ class RFServerUI(object):
         self.status_title.set_text(self.status_states[0])
         status = self.refresh_state()
         while status is 0:
+            time.sleep(0.5)
             status = self.refresh_state()
 
     def on_start_click(self):
@@ -175,6 +177,7 @@ class RFServerUI(object):
             subprocess.call('./start_collection.sh', shell=True)
         status = self.refresh_state()
         while status is not 2:
+            time.sleep(0.5)
             status = self.refresh_state()
 
     def on_stop_click(self):
@@ -191,6 +194,7 @@ class RFServerUI(object):
             subprocess.call('./end_collection.sh', shell=True)
         status = self.refresh_state()
         while status is 0 or status is 2:
+            time.sleep(0.5)
             status = self.refresh_state()
 
 
