@@ -2,7 +2,7 @@
 # Author: Mike G. Abood
 # Capstone Fall 2016
 
-from Utils import *
+from utils import *
 from ProcessPipe import *
 import re
 

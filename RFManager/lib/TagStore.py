@@ -5,7 +5,7 @@
 import RFStatus
 import collections
 import datetime
-from Utils import get_property
+from utils import get_property
 import json
 import xlsxwriter
 

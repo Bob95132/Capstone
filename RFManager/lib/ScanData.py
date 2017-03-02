@@ -1,7 +1,7 @@
 import json
 from os import listdir
 from os.path import isfile, join
-from Utils import *
+from utils import *
 
 RFSCAN_PATH = get_property("RFSCAN_PATH", "CONFIGS")
 RFSCAN_FILE = get_property("RFSCAN_FILE", "CONFIGS")
