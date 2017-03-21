@@ -2,7 +2,7 @@
 Python application for scanning RFID inventory and writing the results of inventory scans to file. RFManger uses the
 RFComm C application from /CommunicationProtocol in order to communicate with the RFID reader device.
  
-##To Install
+## To Install
 use pip to install python dependencies
 ```
 sudo pip install pexpect
@@ -15,7 +15,7 @@ mkdir log
 ```
 verify that the RFComm.c application has been compiled in ../CommunicationProtocol
 
-##To Configure
+## To Configure
 All configuration for RFManager is done in /conf/rfid.conf
 
 The default configuration looks for a target directory called ScanData in the Capstone root directory as the location 
@@ -26,7 +26,7 @@ cd path/to/Capstone/root/
 mkdir ScanData
 ```
  
-##To Run
+## To Run
 Run RFManager to start collecting RFID inventory from the reader device by executing the startup script from the Capstone root directory
 ```
 ./start_collection.sh

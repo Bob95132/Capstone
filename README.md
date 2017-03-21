@@ -1,17 +1,17 @@
 # Capstone
 Repository for the Active RFID Inventory Capstone project. This software is developed for the Raspberry Pi 3 and Raspbian OS.
  
- ##Components
- 1. Communication Protocol
- 2. RFManager
- 3. RFServer
- 
- ##To Install
- See README for each of the above components
- 
- ##To Run
- 1. Configure Raspberry Pi 3 as a WiFi hotspot using the start_ap.sh script in /NetConfig/
- 
+## Components
+1. Communication Protocol
+2. RFManager
+3. RFServer
+
+## To Install
+See README for each of the above components
+
+## To Run
+1. Configure Raspberry Pi 3 as a WiFi hotspot using the start_ap.sh script in /NetConfig/
+
 ```
 cd NetConfig/
 ./start_ap.sh
